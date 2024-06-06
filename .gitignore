@@ -1,0 +1,7 @@
+node_modules/*
+
+!src/canaries/nodejs/node_modules/*
+
+# CDK asset staging directory
+.cdk.staging
+cdk.out
