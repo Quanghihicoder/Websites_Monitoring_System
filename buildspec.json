@@ -1,0 +1,27 @@
+{
+    "version": 0.2,
+    "phases": {
+      "install": {
+        "runtime-versions": {
+          "nodejs": 16
+        }
+      },
+      "pre_build": {
+        "on-failure": "ABORT",
+        "commands": [
+          "npm install",
+          "npm test"
+        ]
+      },
+      "build": {
+        "on-failure": "ABORT",
+        "commands": [
+        ]
+      },
+      "post_build": {
+        "on-failure": "ABORT",
+        "commands": [
+        ]
+      }
+    }
+}
