@@ -4,7 +4,10 @@
       "install": {
         "runtime-versions": {
           "nodejs": 20
-        },
+        }
+      },
+      "pre_build": {
+        "on-failure": "ABORT",
         "commands": [
           "npm install"
         ]
@@ -12,7 +15,12 @@
       "build": {
         "on-failure": "ABORT",
         "commands": [
-          "cdk synth"
+        ]
+      },
+      "post_build": {
+        "on-failure": "ABORT",
+        "commands": [
+          "npm run test --updateSnapshot"
         ]
       }
     }

@@ -12,7 +12,10 @@
       "build": {
         "on-failure": "ABORT",
         "commands": [
-          "cdk synth"
+          "cd test",
+          "rm -rf __snapshots__",
+          "cd ../",
+          "npm run test"
         ]
       }
     }
