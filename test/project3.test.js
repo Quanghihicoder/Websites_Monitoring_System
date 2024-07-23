@@ -17,14 +17,16 @@ test('Bucket for canary has been created', () => {
 })
 
 test('Canary has been created', () => {
-    template.hasResource("AWS::Synthetics::Canary", "");
+    template.hasResource("AWS::Lambda::Function", "");
+
+    template.hasResourceProperties('AWS::Lambda::Function', {
+        Handler: "canary.handler"
+    })
 })
 
 test('Canary runs every 5 minutes', () => {
-    template.hasResourceProperties('AWS::Synthetics::Canary', {
-        Schedule: {
-            Expression: "rate(5 minutes)",
-        }
+    template.hasResourceProperties('AWS::Events::Rule', {
+        ScheduleExpression: "rate(5 minutes)"
     })
 })
 
