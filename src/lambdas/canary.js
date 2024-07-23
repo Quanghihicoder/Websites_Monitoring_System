@@ -8,8 +8,6 @@ const cloudWatch = new CloudWatchClient({});
 // maximum number of links that would be followed
 const limit = 10;
 
-// Test
-
 const getLinks = (html) => {
     const links = [];
     const regex = /<a\s+(?:[^>]*?\s+)?href=(["'])(https?:\/\/|\/)(.*?)\1/g;
