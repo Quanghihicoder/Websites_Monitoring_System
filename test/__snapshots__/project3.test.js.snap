@@ -237,7 +237,7 @@ exports[`Matches the snapshot. 1`] = `
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "d5f753ca31793578c01f8db6811a07bd6968b6ff3e551875ef1ba08e90c5f499.zip",
+          "S3Key": "dad0ee04cccead8fc09e2b2c66197e77f81739f0dc4ba7c92a1ce40cfafabb63.zip",
         },
         "Environment": {
           "Variables": {
@@ -319,7 +319,7 @@ exports[`Matches the snapshot. 1`] = `
       "Type": "AWS::DynamoDB::Table",
       "UpdateReplacePolicy": "Delete",
     },
-    "alarmhttpswwwapplecomauavailability1EA82D43": {
+    "alarmhttpswwwapplecomavailability2CFC7DD7": {
       "Properties": {
         "ActionsEnabled": true,
         "AlarmActions": [
@@ -327,13 +327,13 @@ exports[`Matches the snapshot. 1`] = `
             "Ref": "emailtopic3DE2DBFE",
           },
         ],
-        "AlarmDescription": "Alarm for https://www.apple.com/au Availability Metric",
-        "AlarmName": "alarm-https://www.apple.com/au-availability",
+        "AlarmDescription": "Alarm for https://www.apple.com Availability Metric",
+        "AlarmName": "alarm-https://www.apple.com-availability",
         "ComparisonOperator": "LessThanThreshold",
         "Dimensions": [
           {
             "Name": "url",
-            "Value": "https://www.apple.com/au",
+            "Value": "https://www.apple.com",
           },
         ],
         "EvaluationPeriods": 1,
@@ -346,7 +346,7 @@ exports[`Matches the snapshot. 1`] = `
       },
       "Type": "AWS::CloudWatch::Alarm",
     },
-    "alarmhttpswwwapplecomaubrokenlinksEC29CC50": {
+    "alarmhttpswwwapplecombrokenlinksE88176EA": {
       "Properties": {
         "ActionsEnabled": true,
         "AlarmActions": [
@@ -354,13 +354,13 @@ exports[`Matches the snapshot. 1`] = `
             "Ref": "emailtopic3DE2DBFE",
           },
         ],
-        "AlarmDescription": "Alarm for https://www.apple.com/au BrokenLinks Metric",
-        "AlarmName": "alarm-https://www.apple.com/au-broken-links",
+        "AlarmDescription": "Alarm for https://www.apple.com BrokenLinks Metric",
+        "AlarmName": "alarm-https://www.apple.com-broken-links",
         "ComparisonOperator": "GreaterThanThreshold",
         "Dimensions": [
           {
             "Name": "url",
-            "Value": "https://www.apple.com/au",
+            "Value": "https://www.apple.com",
           },
         ],
         "EvaluationPeriods": 1,
@@ -373,7 +373,7 @@ exports[`Matches the snapshot. 1`] = `
       },
       "Type": "AWS::CloudWatch::Alarm",
     },
-    "alarmhttpswwwapplecomaulatencyED023FAD": {
+    "alarmhttpswwwapplecomlatency9DCA6803": {
       "Properties": {
         "ActionsEnabled": true,
         "AlarmActions": [
@@ -381,94 +381,13 @@ exports[`Matches the snapshot. 1`] = `
             "Ref": "emailtopic3DE2DBFE",
           },
         ],
-        "AlarmDescription": "Alarm for https://www.apple.com/au Latency Metric",
-        "AlarmName": "alarm-https://www.apple.com/au-latency",
+        "AlarmDescription": "Alarm for https://www.apple.com Latency Metric",
+        "AlarmName": "alarm-https://www.apple.com-latency",
         "ComparisonOperator": "GreaterThanThreshold",
         "Dimensions": [
           {
             "Name": "url",
-            "Value": "https://www.apple.com/au",
-          },
-        ],
-        "EvaluationPeriods": 1,
-        "MetricName": "PageExecutionTime",
-        "Namespace": "MonitorWebsites",
-        "Period": 300,
-        "Statistic": "Average",
-        "Threshold": 3000,
-        "TreatMissingData": "ignore",
-      },
-      "Type": "AWS::CloudWatch::Alarm",
-    },
-    "alarmhttpswwwporschecomaustraliaavailability107AF34E": {
-      "Properties": {
-        "ActionsEnabled": true,
-        "AlarmActions": [
-          {
-            "Ref": "emailtopic3DE2DBFE",
-          },
-        ],
-        "AlarmDescription": "Alarm for https://www.porsche.com/australia Availability Metric",
-        "AlarmName": "alarm-https://www.porsche.com/australia-availability",
-        "ComparisonOperator": "LessThanThreshold",
-        "Dimensions": [
-          {
-            "Name": "url",
-            "Value": "https://www.porsche.com/australia",
-          },
-        ],
-        "EvaluationPeriods": 1,
-        "MetricName": "PageAvailability",
-        "Namespace": "MonitorWebsites",
-        "Period": 300,
-        "Statistic": "Average",
-        "Threshold": 1,
-        "TreatMissingData": "ignore",
-      },
-      "Type": "AWS::CloudWatch::Alarm",
-    },
-    "alarmhttpswwwporschecomaustraliabrokenlinksB6504E35": {
-      "Properties": {
-        "ActionsEnabled": true,
-        "AlarmActions": [
-          {
-            "Ref": "emailtopic3DE2DBFE",
-          },
-        ],
-        "AlarmDescription": "Alarm for https://www.porsche.com/australia BrokenLinks Metric",
-        "AlarmName": "alarm-https://www.porsche.com/australia-broken-links",
-        "ComparisonOperator": "GreaterThanThreshold",
-        "Dimensions": [
-          {
-            "Name": "url",
-            "Value": "https://www.porsche.com/australia",
-          },
-        ],
-        "EvaluationPeriods": 1,
-        "MetricName": "PageBrokenLinks",
-        "Namespace": "MonitorWebsites",
-        "Period": 300,
-        "Statistic": "Average",
-        "Threshold": 0,
-        "TreatMissingData": "ignore",
-      },
-      "Type": "AWS::CloudWatch::Alarm",
-    },
-    "alarmhttpswwwporschecomaustralialatency9BAC9CDF": {
-      "Properties": {
-        "ActionsEnabled": true,
-        "AlarmActions": [
-          {
-            "Ref": "emailtopic3DE2DBFE",
-          },
-        ],
-        "AlarmDescription": "Alarm for https://www.porsche.com/australia Latency Metric",
-        "AlarmName": "alarm-https://www.porsche.com/australia-latency",
-        "ComparisonOperator": "GreaterThanThreshold",
-        "Dimensions": [
-          {
-            "Name": "url",
-            "Value": "https://www.porsche.com/australia",
+            "Value": "https://www.apple.com",
           },
         ],
         "EvaluationPeriods": 1,
@@ -562,6 +481,87 @@ exports[`Matches the snapshot. 1`] = `
       },
       "Type": "AWS::CloudWatch::Alarm",
     },
+    "alarmhttpswwwyoutubecomavailability8B401BCC": {
+      "Properties": {
+        "ActionsEnabled": true,
+        "AlarmActions": [
+          {
+            "Ref": "emailtopic3DE2DBFE",
+          },
+        ],
+        "AlarmDescription": "Alarm for https://www.youtube.com Availability Metric",
+        "AlarmName": "alarm-https://www.youtube.com-availability",
+        "ComparisonOperator": "LessThanThreshold",
+        "Dimensions": [
+          {
+            "Name": "url",
+            "Value": "https://www.youtube.com",
+          },
+        ],
+        "EvaluationPeriods": 1,
+        "MetricName": "PageAvailability",
+        "Namespace": "MonitorWebsites",
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 1,
+        "TreatMissingData": "ignore",
+      },
+      "Type": "AWS::CloudWatch::Alarm",
+    },
+    "alarmhttpswwwyoutubecombrokenlinksE2B3C642": {
+      "Properties": {
+        "ActionsEnabled": true,
+        "AlarmActions": [
+          {
+            "Ref": "emailtopic3DE2DBFE",
+          },
+        ],
+        "AlarmDescription": "Alarm for https://www.youtube.com BrokenLinks Metric",
+        "AlarmName": "alarm-https://www.youtube.com-broken-links",
+        "ComparisonOperator": "GreaterThanThreshold",
+        "Dimensions": [
+          {
+            "Name": "url",
+            "Value": "https://www.youtube.com",
+          },
+        ],
+        "EvaluationPeriods": 1,
+        "MetricName": "PageBrokenLinks",
+        "Namespace": "MonitorWebsites",
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 0,
+        "TreatMissingData": "ignore",
+      },
+      "Type": "AWS::CloudWatch::Alarm",
+    },
+    "alarmhttpswwwyoutubecomlatency718D2AEE": {
+      "Properties": {
+        "ActionsEnabled": true,
+        "AlarmActions": [
+          {
+            "Ref": "emailtopic3DE2DBFE",
+          },
+        ],
+        "AlarmDescription": "Alarm for https://www.youtube.com Latency Metric",
+        "AlarmName": "alarm-https://www.youtube.com-latency",
+        "ComparisonOperator": "GreaterThanThreshold",
+        "Dimensions": [
+          {
+            "Name": "url",
+            "Value": "https://www.youtube.com",
+          },
+        ],
+        "EvaluationPeriods": 1,
+        "MetricName": "PageExecutionTime",
+        "Namespace": "MonitorWebsites",
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 3000,
+        "TreatMissingData": "ignore",
+      },
+      "Type": "AWS::CloudWatch::Alarm",
+    },
     "alarmmaxlatency384A3E63": {
       "Properties": {
         "ActionsEnabled": true,
@@ -605,7 +605,7 @@ exports[`Matches the snapshot. 1`] = `
                 "Dimensions": [
                   {
                     "Name": "url",
-                    "Value": "https://www.porsche.com/australia",
+                    "Value": "https://www.youtube.com",
                   },
                 ],
                 "MetricName": "PageExecutionTime",
@@ -623,7 +623,7 @@ exports[`Matches the snapshot. 1`] = `
                 "Dimensions": [
                   {
                     "Name": "url",
-                    "Value": "https://www.apple.com/au",
+                    "Value": "https://www.apple.com",
                   },
                 ],
                 "MetricName": "PageExecutionTime",
@@ -683,7 +683,7 @@ exports[`Matches the snapshot. 1`] = `
                 "Dimensions": [
                   {
                     "Name": "url",
-                    "Value": "https://www.porsche.com/australia",
+                    "Value": "https://www.youtube.com",
                   },
                 ],
                 "MetricName": "PageAvailability",
@@ -701,7 +701,7 @@ exports[`Matches the snapshot. 1`] = `
                 "Dimensions": [
                   {
                     "Name": "url",
-                    "Value": "https://www.apple.com/au",
+                    "Value": "https://www.apple.com",
                   },
                 ],
                 "MetricName": "PageAvailability",
@@ -728,7 +728,7 @@ exports[`Matches the snapshot. 1`] = `
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "d5f753ca31793578c01f8db6811a07bd6968b6ff3e551875ef1ba08e90c5f499.zip",
+          "S3Key": "dad0ee04cccead8fc09e2b2c66197e77f81739f0dc4ba7c92a1ce40cfafabb63.zip",
         },
         "Environment": {
           "Variables": {
@@ -791,7 +791,7 @@ exports[`Matches the snapshot. 1`] = `
           },
         ],
         "SourceObjectKeys": [
-          "64d191f445d42aa35fee64886c41542ebff3ccc4e857fc22bb1189558627da49.zip",
+          "be7d07181e10bfa11f51a2c1d7c7eb31ac3fd2ef6cb8dcccd6d075fcc90e5b15.zip",
         ],
       },
       "Type": "Custom::CDKBucketDeployment",
