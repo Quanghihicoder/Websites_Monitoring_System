@@ -1,49 +1,31 @@
-// Test webcrawler function
-const { mockClient } = require('aws-sdk-client-mock');
-const { S3Client, GetObjectCommand} = require("@aws-sdk/client-s3");
-const { CloudWatchClient, PutMetricDataCommand } = require("@aws-sdk/client-cloudwatch");
-const { sdkStreamMixin } = require("@smithy/util-stream");
-const handler = require('../src/lambdas/webcrawler').handler;
-var path = require('path');
+// Test AWS infrastructure
 
-const s3Mock = mockClient(S3Client);
-const cloudWatchMock = mockClient(CloudWatchClient);
+const cdk = require('aws-cdk-lib');
+const { Template } = require('aws-cdk-lib/assertions');
+const { ApplicationStack } = require("../lib/application-stack");
+const { PipelineStack } = require("../lib/pipeline-stack");
 
-beforeAll(() => {
-    process.env.BUCKET = 'example'; // Any value, does not matter
-    process.env.METRIC_NAMESPACE = 'example'; // Any value, does not matter
-    process.env.METRIC_LATENCY_NAME = 'example'; // Any value, does not matter
-    process.env.METRIC_AVAILABILITY_NAME = 'example'; // Any value, does not matter
-    process.env.METRIC_BROKENLINKS_NAME = 'example'; // Any value, does not matter
+const Sydney = {
+  account: "058264550947",
+  region: "ap-southeast-2",
+};
+
+const app = new cdk.App();
+
+const betaApplicationStack = new ApplicationStack(app, 'BetaApplicationStack', { env: Sydney, stackName: "BetaApplicationStack", stage: 'beta' });
+const prodApplicationStack = new ApplicationStack(app, 'ProdApplicationStack', { env: Sydney, stackName: "ProdApplicationStack", stage: 'prod' });
+
+const stack =  new PipelineStack(app, 'PipelineStack', {
+  stackName: "PipelineStack",
+  betaApplicationStack: betaApplicationStack,
+  prodApplicationStack: prodApplicationStack,
+  env: Sydney,
 });
 
-it('webcrawler gets object from S3', async () => {
+const template = Template.fromStack(stack);
 
-    // Expect data from code
-    const fileData = require('fs').readFileSync(path.join(__dirname, '../src/buckets/data/websites.json'), 'utf8')
+// ======================================================== Unit/Assertions Test =====================================================
 
-    const urls = []
-
-    const jsonData = JSON.parse(fileData);
-    for (const website of jsonData.websites) {
-      urls.push(website.url);
-    }
-
-    // Fake real data from s3
-    const s3Data = require('fs').createReadStream(path.join(__dirname, '../src/buckets/data/websites.json'))
-
-    const stream = sdkStreamMixin(s3Data)
-    
-    s3Mock.on(GetObjectCommand).resolves({
-        Body: stream
-    });
-
-    cloudWatchMock.on(PutMetricDataCommand).resolves()
-
-    const result = await handler();
-    
-    expect(result).toEqual(urls);
-
-    s3Mock.reset();
-    cloudWatchMock.reset();
-}, 15000);
+test('The pipeline has been created', () => {
+    template.hasResource("AWS::CodePipeline::Pipeline", "");
+})

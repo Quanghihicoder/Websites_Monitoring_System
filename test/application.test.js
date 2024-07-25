@@ -2,19 +2,24 @@
 
 const cdk = require('aws-cdk-lib');
 const { Template } = require('aws-cdk-lib/assertions');
-const { Project3Stack } = require('../lib/project3-stack');
+const { ApplicationStack } = require('../lib/application-stack');
+
+const Sydney = {
+    account: "058264550947",
+    region: "ap-southeast-2",
+};
 
 const app = new cdk.App();
-const stack = new Project3Stack(app, 'Test-Project3Stack', {});
+const stack = new ApplicationStack(app, 'ProdApplicationStack', { env: Sydney, stackName: "ProdApplicationStack", stage: 'prod' });
 const template = Template.fromStack(stack);
 
 // ======================================================== Unit/Assertions Test =====================================================
 
-// test('Bucket for webcrawler has been created', () => {
-//     template.hasResourceProperties('AWS::S3::Bucket', {
-//         BucketName: "project3-webcrawler-bucket"
-//     })
-// })
+test('Bucket for webcrawler has been created', () => {
+    template.hasResourceProperties('AWS::S3::Bucket', {
+        BucketName: "project3-webcrawler-bucket-ap-southeast-2-prod"
+    })
+})
 
 test('Web Crawler has been created', () => {
     template.hasResource("AWS::Lambda::Function", "");
@@ -30,23 +35,19 @@ test('Web Crawler runs every 5 minutes', () => {
     })
 })
 
-// test('There are 11 alarms, includes 3 Latency, 3 Availability, 3 BrokenLinks', () => {
-//     template.resourceCountIs("AWS::CloudWatch::Alarm", 11);
-
-//     template.resourcePropertiesCountIs("AWS::CloudWatch::Alarm", {MetricName: "PageExecutionTime"}, 3)
-//     template.resourcePropertiesCountIs("AWS::CloudWatch::Alarm", {MetricName: "PageAvailability"}, 3)
-//     template.resourcePropertiesCountIs("AWS::CloudWatch::Alarm", {MetricName: "PageBrokenLinks"}, 3)
-// })
-
-test('There are 11 alarms', () => {
+test('There are 11 alarms, includes 3 Latency, 3 Availability, 3 BrokenLinks', () => {
     template.resourceCountIs("AWS::CloudWatch::Alarm", 11);
+
+    template.resourcePropertiesCountIs("AWS::CloudWatch::Alarm", {MetricName: "PageExecutionTime-ap-southeast-2-prod"}, 3)
+    template.resourcePropertiesCountIs("AWS::CloudWatch::Alarm", {MetricName: "PageAvailability-ap-southeast-2-prod"}, 3)
+    template.resourcePropertiesCountIs("AWS::CloudWatch::Alarm", {MetricName: "PageBrokenLinks-ap-southeast-2-prod"}, 3)
 })
 
-// test('SNS has been created and has 2 email subscriptions', () => {
-//     template.hasResource("AWS::SNS::Topic", "");
+test('SNS has been created and has 2 email subscriptions', () => {
+    template.hasResource("AWS::SNS::Topic", "");
     
-//     template.resourceCountIs("AWS::SNS::Subscription", 2);
-// })
+    template.resourceCountIs("AWS::SNS::Subscription", 2);
+})
 
 // ======================================================== Snapshot Test =====================================================
 // Might need to run "npm run test --updateSnapshot"

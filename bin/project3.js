@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
 const cdk = require('aws-cdk-lib');
-const { Project3Stack } = require('../lib/project3-stack');
+const { ApplicationStack } = require("../lib/application-stack");
+const { PipelineStack } = require("../lib/pipeline-stack");
 
 const Virginia = {
   account: "058264550947",
@@ -14,7 +15,13 @@ const Sydney = {
 };
 
 const app = new cdk.App();
-new Project3Stack(app, 'Project3Stack', {
-  stackName: "project3",
-  env: Sydney
+
+const betaApplicationStack = new ApplicationStack(app, 'BetaApplicationStack', { env: Sydney, stackName: "BetaApplicationStack", stage: 'beta' });
+const prodApplicationStack = new ApplicationStack(app, 'ProdApplicationStack', { env: Sydney, stackName: "ProdApplicationStack", stage: 'prod' });
+
+new PipelineStack(app, 'PipelineStack', {
+  stackName: "PipelineStack",
+  betaApplicationStack: betaApplicationStack,
+  prodApplicationStack: prodApplicationStack,
+  env: Sydney,
 });
