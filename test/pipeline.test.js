@@ -1,9 +1,9 @@
-// Test canary function
+// Test webcrawler function
 const { mockClient } = require('aws-sdk-client-mock');
 const { S3Client, GetObjectCommand} = require("@aws-sdk/client-s3");
 const { CloudWatchClient, PutMetricDataCommand } = require("@aws-sdk/client-cloudwatch");
 const { sdkStreamMixin } = require("@smithy/util-stream");
-const handler = require('../src/lambdas/canary').handler;
+const handler = require('../src/lambdas/webcrawler').handler;
 var path = require('path');
 
 const s3Mock = mockClient(S3Client);
@@ -17,10 +17,10 @@ beforeAll(() => {
     process.env.METRIC_BROKENLINKS_NAME = 'example'; // Any value, does not matter
 });
 
-it('canary gets object from S3', async () => {
+it('webcrawler gets object from S3', async () => {
 
     // Expect data from code
-    const fileData = require('fs').readFileSync(path.join(__dirname, '../src/buckets/data/webCrawler.json'), 'utf8')
+    const fileData = require('fs').readFileSync(path.join(__dirname, '../src/buckets/data/websites.json'), 'utf8')
 
     const urls = []
 
@@ -30,7 +30,7 @@ it('canary gets object from S3', async () => {
     }
 
     // Fake real data from s3
-    const s3Data = require('fs').createReadStream(path.join(__dirname, '../src/buckets/data/webCrawler.json'))
+    const s3Data = require('fs').createReadStream(path.join(__dirname, '../src/buckets/data/websites.json'))
 
     const stream = sdkStreamMixin(s3Data)
     

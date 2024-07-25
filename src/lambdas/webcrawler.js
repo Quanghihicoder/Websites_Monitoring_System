@@ -5,7 +5,8 @@ const { CloudWatchClient, PutMetricDataCommand } = require("@aws-sdk/client-clou
 const s3 = new S3Client({});
 const cloudWatch = new CloudWatchClient({});
 
-// Test vv
+// Test pipeline
+// const test = true
 
 // maximum number of links that would be followed
 const limit = 10;
@@ -120,9 +121,9 @@ const loadUrl = async function (url) {
     }
 };
 
-const canary = async function () {
+const webcrawler = async function () {
     const bucketName = process.env.BUCKET;
-    const objectKey = "data/webCrawler.json"; // <- No /data
+    const objectKey = "data/websites.json"; // <- No /data
 
     const command = new GetObjectCommand({
         Bucket: bucketName, // your bucket name
@@ -153,5 +154,5 @@ const canary = async function () {
 };
 
 exports.handler = async (event) => {
-    return await canary();
+    return await webcrawler();
 };
