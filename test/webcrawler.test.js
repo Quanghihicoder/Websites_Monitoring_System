@@ -44,8 +44,8 @@ it('webcrawler gets object from S3', async () => {
     
     expect(result).toEqual(urls);
 
-    s3Mock.reset();
-    cloudWatchMock.reset();
+    s3Mock.restore();
+    cloudWatchMock.restore();
 }, 15000);
 
 afterAll(done => {
