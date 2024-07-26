@@ -14,214 +14,12 @@ exports[`Matches the snapshot. 1`] = `
     "project3webcrawlerapsoutheast2prodLambdaSourceObjectKeyParameterD25890A2": {
       "Type": "String",
     },
+    "webcrawlerbucketlocationParameter": {
+      "Default": "webcrawler-assets-bucket-location",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
   },
   "Resources": {
-    "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536": {
-      "DependsOn": [
-        "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF",
-        "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265",
-      ],
-      "Properties": {
-        "Code": {
-          "S3Bucket": "cdk-hnb659fds-assets-058264550947-ap-southeast-2",
-          "S3Key": "2d56e153cac88d3e0c2f842e8e6f6783b8725bf91f95e0673b4725448a56e96d.zip",
-        },
-        "Environment": {
-          "Variables": {
-            "AWS_CA_BUNDLE": "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem",
-          },
-        },
-        "Handler": "index.handler",
-        "Layers": [
-          {
-            "Ref": "webcrawlerbucketdeploymentapsoutheast2prodAwsCliLayer8D36B0BE",
-          },
-        ],
-        "Role": {
-          "Fn::GetAtt": [
-            "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265",
-            "Arn",
-          ],
-        },
-        "Runtime": "python3.9",
-        "Timeout": 900,
-      },
-      "Type": "AWS::Lambda::Function",
-    },
-    "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265": {
-      "Properties": {
-        "AssumeRolePolicyDocument": {
-          "Statement": [
-            {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Principal": {
-                "Service": "lambda.amazonaws.com",
-              },
-            },
-          ],
-          "Version": "2012-10-17",
-        },
-        "ManagedPolicyArns": [
-          {
-            "Fn::Join": [
-              "",
-              [
-                "arn:",
-                {
-                  "Ref": "AWS::Partition",
-                },
-                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
-              ],
-            ],
-          },
-        ],
-      },
-      "Type": "AWS::IAM::Role",
-    },
-    "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF": {
-      "Properties": {
-        "PolicyDocument": {
-          "Statement": [
-            {
-              "Action": [
-                "s3:GetObject*",
-                "s3:GetBucket*",
-                "s3:List*",
-              ],
-              "Effect": "Allow",
-              "Resource": [
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition",
-                      },
-                      ":s3:::cdk-hnb659fds-assets-058264550947-ap-southeast-2",
-                    ],
-                  ],
-                },
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition",
-                      },
-                      ":s3:::cdk-hnb659fds-assets-058264550947-ap-southeast-2/*",
-                    ],
-                  ],
-                },
-              ],
-            },
-            {
-              "Action": [
-                "s3:GetObject*",
-                "s3:GetBucket*",
-                "s3:List*",
-                "s3:DeleteObject*",
-                "s3:PutObject",
-                "s3:PutObjectLegalHold",
-                "s3:PutObjectRetention",
-                "s3:PutObjectTagging",
-                "s3:PutObjectVersionTagging",
-                "s3:Abort*",
-              ],
-              "Effect": "Allow",
-              "Resource": [
-                {
-                  "Fn::GetAtt": [
-                    "project3webcrawlerbucketapsoutheast2prod6B515208",
-                    "Arn",
-                  ],
-                },
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      {
-                        "Fn::GetAtt": [
-                          "project3webcrawlerbucketapsoutheast2prod6B515208",
-                          "Arn",
-                        ],
-                      },
-                      "/*",
-                    ],
-                  ],
-                },
-              ],
-            },
-          ],
-          "Version": "2012-10-17",
-        },
-        "PolicyName": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF",
-        "Roles": [
-          {
-            "Ref": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265",
-          },
-        ],
-      },
-      "Type": "AWS::IAM::Policy",
-    },
-    "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": {
-      "DependsOn": [
-        "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
-      ],
-      "Properties": {
-        "Code": {
-          "S3Bucket": "cdk-hnb659fds-assets-058264550947-ap-southeast-2",
-          "S3Key": "2eb6a831b107939f63cfebf68e6316e1a40f79fc99cae0fee9b333bac8d29bc4.zip",
-        },
-        "Description": {
-          "Fn::Join": [
-            "",
-            [
-              "Lambda function for auto-deleting objects in ",
-              {
-                "Ref": "project3webcrawlerbucketapsoutheast2prod6B515208",
-              },
-              " S3 bucket.",
-            ],
-          ],
-        },
-        "Handler": "index.handler",
-        "MemorySize": 128,
-        "Role": {
-          "Fn::GetAtt": [
-            "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
-            "Arn",
-          ],
-        },
-        "Runtime": "nodejs18.x",
-        "Timeout": 900,
-      },
-      "Type": "AWS::Lambda::Function",
-    },
-    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": {
-      "Properties": {
-        "AssumeRolePolicyDocument": {
-          "Statement": [
-            {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Principal": {
-                "Service": "lambda.amazonaws.com",
-              },
-            },
-          ],
-          "Version": "2012-10-17",
-        },
-        "ManagedPolicyArns": [
-          {
-            "Fn::Sub": "arn:\${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
-          },
-        ],
-      },
-      "Type": "AWS::IAM::Role",
-    },
     "alarmhttpswwwapplecomavailabilityapsoutheast2prod1F27A44A": {
       "Properties": {
         "ActionsEnabled": true,
@@ -797,7 +595,7 @@ exports[`Matches the snapshot. 1`] = `
         },
         "FunctionVersion": {
           "Fn::GetAtt": [
-            "project3webcrawlerapsoutheast2prodCurrentVersion546DBF54fa33af50dd45438fcebde450b64c3c55",
+            "project3webcrawlerapsoutheast2prodCurrentVersion546DBF54b6e63d187ab6980508f544a4bd0de2e6",
             "Version",
           ],
         },
@@ -832,7 +630,7 @@ exports[`Matches the snapshot. 1`] = `
         "Environment": {
           "Variables": {
             "BUCKET": {
-              "Ref": "project3webcrawlerbucketapsoutheast2prod6B515208",
+              "Ref": "webcrawlerbucketlocationParameter",
             },
             "METRIC_AVAILABILITY_NAME": "PageAvailability-ap-southeast-2-prod",
             "METRIC_BROKENLINKS_NAME": "PageBrokenLinks-ap-southeast-2-prod",
@@ -859,7 +657,7 @@ exports[`Matches the snapshot. 1`] = `
       },
       "Type": "AWS::Lambda::Function",
     },
-    "project3webcrawlerapsoutheast2prodCurrentVersion546DBF54fa33af50dd45438fcebde450b64c3c55": {
+    "project3webcrawlerapsoutheast2prodCurrentVersion546DBF54b6e63d187ab6980508f544a4bd0de2e6": {
       "DeletionPolicy": "Delete",
       "Properties": {
         "FunctionName": {
@@ -868,95 +666,6 @@ exports[`Matches the snapshot. 1`] = `
       },
       "Type": "AWS::Lambda::Version",
       "UpdateReplacePolicy": "Delete",
-    },
-    "project3webcrawlerbucketapsoutheast2prod6B515208": {
-      "DeletionPolicy": "Delete",
-      "Properties": {
-        "BucketName": "project3-webcrawler-bucket-ap-southeast-2-prod",
-        "Tags": [
-          {
-            "Key": "aws-cdk:auto-delete-objects",
-            "Value": "true",
-          },
-          {
-            "Key": "aws-cdk:cr-owned:3a3d2789",
-            "Value": "true",
-          },
-        ],
-      },
-      "Type": "AWS::S3::Bucket",
-      "UpdateReplacePolicy": "Delete",
-    },
-    "project3webcrawlerbucketapsoutheast2prodAutoDeleteObjectsCustomResourceA6A6CF14": {
-      "DeletionPolicy": "Delete",
-      "DependsOn": [
-        "project3webcrawlerbucketapsoutheast2prodPolicy91893827",
-      ],
-      "Properties": {
-        "BucketName": {
-          "Ref": "project3webcrawlerbucketapsoutheast2prod6B515208",
-        },
-        "ServiceToken": {
-          "Fn::GetAtt": [
-            "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
-            "Arn",
-          ],
-        },
-      },
-      "Type": "Custom::S3AutoDeleteObjects",
-      "UpdateReplacePolicy": "Delete",
-    },
-    "project3webcrawlerbucketapsoutheast2prodPolicy91893827": {
-      "Properties": {
-        "Bucket": {
-          "Ref": "project3webcrawlerbucketapsoutheast2prod6B515208",
-        },
-        "PolicyDocument": {
-          "Statement": [
-            {
-              "Action": [
-                "s3:PutBucketPolicy",
-                "s3:GetBucket*",
-                "s3:List*",
-                "s3:DeleteObject*",
-              ],
-              "Effect": "Allow",
-              "Principal": {
-                "AWS": {
-                  "Fn::GetAtt": [
-                    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
-                    "Arn",
-                  ],
-                },
-              },
-              "Resource": [
-                {
-                  "Fn::GetAtt": [
-                    "project3webcrawlerbucketapsoutheast2prod6B515208",
-                    "Arn",
-                  ],
-                },
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      {
-                        "Fn::GetAtt": [
-                          "project3webcrawlerbucketapsoutheast2prod6B515208",
-                          "Arn",
-                        ],
-                      },
-                      "/*",
-                    ],
-                  ],
-                },
-              ],
-            },
-          ],
-          "Version": "2012-10-17",
-        },
-      },
-      "Type": "AWS::S3::BucketPolicy",
     },
     "project3webcrawlerdeploymentapsoutheast2prodE5D270CA": {
       "Properties": {
@@ -1020,40 +729,6 @@ exports[`Matches the snapshot. 1`] = `
         "ComputePlatform": "Lambda",
       },
       "Type": "AWS::CodeDeploy::Application",
-    },
-    "webcrawlerbucketdeploymentapsoutheast2prodAwsCliLayer8D36B0BE": {
-      "Properties": {
-        "Content": {
-          "S3Bucket": "cdk-hnb659fds-assets-058264550947-ap-southeast-2",
-          "S3Key": "3322b7049fb0ed2b7cbb644a2ada8d1116ff80c32dca89e6ada846b5de26f961.zip",
-        },
-        "Description": "/opt/awscli/aws",
-      },
-      "Type": "AWS::Lambda::LayerVersion",
-    },
-    "webcrawlerbucketdeploymentapsoutheast2prodCustomResource81A5EC27": {
-      "DeletionPolicy": "Delete",
-      "Properties": {
-        "DestinationBucketName": {
-          "Ref": "project3webcrawlerbucketapsoutheast2prod6B515208",
-        },
-        "Prune": true,
-        "RetainOnDelete": false,
-        "ServiceToken": {
-          "Fn::GetAtt": [
-            "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536",
-            "Arn",
-          ],
-        },
-        "SourceBucketNames": [
-          "cdk-hnb659fds-assets-058264550947-ap-southeast-2",
-        ],
-        "SourceObjectKeys": [
-          "5ad477224e3af7f80b27c4af182c5f993e2d112f204536988e770367822565c3.zip",
-        ],
-      },
-      "Type": "Custom::CDKBucketDeployment",
-      "UpdateReplacePolicy": "Delete",
     },
     "webcrawleriamroleapsoutheast2prodAA2BF0D3": {
       "Properties": {
