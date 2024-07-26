@@ -30,7 +30,7 @@ test('Web Crawler runs every 5 minutes', () => {
 })
 
 test('There are 11 alarms, includes 3 Latency, 3 Availability, 3 BrokenLinks', () => {
-    template.resourceCountIs("AWS::CloudWatch::Alarm", 11);
+    template.resourceCountIs("AWS::CloudWatch::Alarm", 12);
 
     template.resourcePropertiesCountIs("AWS::CloudWatch::Alarm", {MetricName: "PageExecutionTime-ap-southeast-2-prod"}, 3)
     template.resourcePropertiesCountIs("AWS::CloudWatch::Alarm", {MetricName: "PageAvailability-ap-southeast-2-prod"}, 3)
