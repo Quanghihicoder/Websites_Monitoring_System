@@ -47,3 +47,7 @@ it('webcrawler gets object from S3', async () => {
     s3Mock.reset();
     cloudWatchMock.reset();
 }, 15000);
+
+afterAll(done => {
+    done()
+})
