@@ -125,8 +125,6 @@ const webcrawler = async function () {
     const bucketName = process.env.BUCKET;
     const objectKey = "data/websites.json"; // <- No /data
 
-    console.log("BucketName:" + bucketName)
-
     const command = new GetObjectCommand({
         Bucket: bucketName, // your bucket name
         Key: objectKey // path to the object you're looking for
