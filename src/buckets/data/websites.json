@@ -1,0 +1,17 @@
+{
+    "websites": [
+      {
+        "name": "Swinburne",
+        "url": "https://www.swinburne.edu.au"
+      },
+      {
+        "name": "YouTube",
+        "url": "https://www.youtube.com"
+      }, 
+      {
+        "name": "Apple",
+        "url": "https://www.apple.com"
+      }
+    ]
+  }
+  
