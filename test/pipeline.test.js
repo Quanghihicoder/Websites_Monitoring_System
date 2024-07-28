@@ -1,13 +1,9 @@
-#!/usr/bin/env node
+// Test AWS infrastructure
 
 const cdk = require('aws-cdk-lib');
+const { Template } = require('aws-cdk-lib/assertions');
 const { ApplicationStack } = require("../lib/application-stack");
 const { PipelineStack } = require("../lib/pipeline-stack");
-
-const Virginia = {
-  account: "058264550947",
-  region: "us-east-1",
-};
 
 const Sydney = {
   account: "058264550947",
@@ -19,9 +15,24 @@ const app = new cdk.App();
 const betaApplicationStack = new ApplicationStack(app, 'BetaApplicationStack', { env: Sydney, stackName: "BetaApplicationStack", stage: 'beta' });
 const prodApplicationStack = new ApplicationStack(app, 'ProdApplicationStack', { env: Sydney, stackName: "ProdApplicationStack", stage: 'prod' });
 
-new PipelineStack(app, 'PipelineStack', {
+const stack =  new PipelineStack(app, 'PipelineStack', {
   stackName: "PipelineStack",
   betaApplicationStack: betaApplicationStack,
   prodApplicationStack: prodApplicationStack,
   env: Sydney,
 });
+
+const template = Template.fromStack(stack);
+
+// ======================================================== Unit/Assertions Test =====================================================
+
+test('Bucket for webcrawler has been created', () => {
+    template.hasResourceProperties('AWS::S3::Bucket', {
+        BucketName: "project3-webcrawler-bucket"
+    })
+})
+
+
+test('The pipeline has been created', () => {
+    template.hasResource("AWS::CodePipeline::Pipeline", "");
+})
