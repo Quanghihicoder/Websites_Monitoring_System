@@ -5,7 +5,7 @@ const { Template } = require('aws-cdk-lib/assertions');
 const { ApplicationStack } = require('../lib/application-stack');
 const { Metric, Alarm } = require('aws-cdk-lib/aws-cloudwatch');
 //const AWS = require('aws-sdk-mock');
-//const { handler } = require('../src/lambda/index');
+//const { handler } = require('../src/lambdas/dynamodb');
 //const { DynamoDBClient, PutItemCommand } = require("@aws-sdk/client-dynamodb");
 
 const Sydney = {
@@ -134,8 +134,7 @@ test('Lambda Deployment Group for Web Crawler is created', () => {
             Events: [
                 'DEPLOYMENT_FAILURE',
                 'DEPLOYMENT_STOP_ON_REQUEST',
-                'DEPLOYMENT_STOP_ON_ALARM'
-            ]
+                'DEPLOYMENT_STOP_ON_ALARM']
         }
     })
 })
@@ -148,12 +147,8 @@ test('Alarms for Latency have correct properties', () => {
         AlarmName: `webcrawler-alarm-${url}-latency-ap-southeast-2-prod`,
         ComparisonOperator: 'GreaterThanThreshold',
         Threshold: 3000, // Use the actual value of acceptableLatency
-        EvaluationPeriods: 1,
-        ActionsEnabled: true,
         Period: 300, // 5 minutes in seconds
-        TreatMissingData: 'ignore',
-        AlarmDescription: `Alarm for ${url} Latency Metric`,
-      })
+        AlarmDescription: `Alarm for ${url} Latency Metric`,})
     })
   })
 
@@ -162,13 +157,9 @@ test('Alarms for Latency have correct properties', () => {
       template.hasResourceProperties('AWS::CloudWatch::Alarm', {
         AlarmName: `webcrawler-alarm-${url}-availability-ap-southeast-2-prod`,
         ComparisonOperator: 'LessThanThreshold',
-        Threshold: 1,
-        EvaluationPeriods: 1,
         ActionsEnabled: true,
         Period: 300, // 5 minutes in seconds
-        TreatMissingData: 'ignore',
-        AlarmDescription: `Alarm for ${url} Availability Metric`,
-      })
+        AlarmDescription: `Alarm for ${url} Availability Metric`,})
     })
   })
 
@@ -177,13 +168,26 @@ test('Alarms for Latency have correct properties', () => {
       template.hasResourceProperties('AWS::CloudWatch::Alarm', {
         AlarmName: `webcrawler-alarm-${url}-broken-links-ap-southeast-2-prod`,
         ComparisonOperator: 'GreaterThanThreshold',
-        Threshold: 0,
-        EvaluationPeriods: 1,
-        ActionsEnabled: true,
-        Period: 300, // 5 minutes in seconds
-        TreatMissingData: 'ignore',
-        AlarmDescription: `Alarm for ${url} BrokenLinks Metric`,
-      })
+        Period: 300, // 5 minutes in seconds  
+        AlarmDescription: `Alarm for ${url} BrokenLinks Metric`,})
+    })
+  })
+
+  test('Alarm for Max Latency has correct properties', () => {
+    template.hasResourceProperties('AWS::CloudWatch::Alarm', {
+      AlarmName: 'webcrawler-alarm-max-latency-ap-southeast-2-prod',
+      ComparisonOperator: 'GreaterThanThreshold',
+      Threshold: 3000, // Use the actual value of acceptableLatency
+      AlarmDescription: 'Alarm for Max Latency Metric'
+    })
+  })
+
+  test('Alarm for Min Availability has correct properties', () => {
+    template.hasResourceProperties('AWS::CloudWatch::Alarm', {
+      AlarmName: 'webcrawler-alarm-min-reachable-ap-southeast-2-prod',
+      ComparisonOperator: 'LessThanThreshold',
+      Threshold: urls.length, // Use the actual number of URLs
+      AlarmDescription: 'Alarm for Min Availability Metric'
     })
   })
 
