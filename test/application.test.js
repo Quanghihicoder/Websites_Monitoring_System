@@ -127,23 +127,16 @@ test('Lambda Alias for Web Crawler is created', () => {
 })
 
 test('Lambda Deployment Group for Web Crawler is created', () => {
+    template.hasResource('AWS::CodeDeploy::DeploymentGroup',"");
     template.hasResourceProperties('AWS::CodeDeploy::DeploymentGroup', {
-        DeploymentConfigName: 'CodeDeployDefault.LambdaLinear10PercentEvery3Minutes'
-        /*AlarmConfiguration: {
-            Alarms: [
-                {
-                    Name: 'webcrawler-alarm-duration-ap-southeast-2-prod'
-                }
-            ],
-            Enabled: true
-        },
+        DeploymentConfigName: 'CodeDeployDefault.LambdaLinear10PercentEvery3Minutes',
         AutoRollbackConfiguration: {
             Events: [
                 'DEPLOYMENT_FAILURE',
-                'DEPLOYMENT_STOP_ON_ALARM',
-                'DEPLOYMENT_STOP_ON_REQUEST'
+                'DEPLOYMENT_STOP_ON_REQUEST',
+                'DEPLOYMENT_STOP_ON_ALARM'
             ]
-        }*/
+        }
     })
 })
 
