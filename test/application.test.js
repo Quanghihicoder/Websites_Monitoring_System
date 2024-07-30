@@ -46,55 +46,20 @@ test('IAM Role for Web Crawler is created', () => {
     template.hasResourceProperties('AWS::IAM::Role',{
         Description: 'Web Crawler IAM Role-ap-southeast-2-prod',
         AssumeRolePolicyDocument: {
-            Statement: [
-                {
+            Statement: [{
                     Effect: 'Allow',
                     Principal: {
                         Service: 'lambda.amazonaws.com'
                     },
-                    Action: 'sts:AssumeRole'
-                }
-            ]
-        }
+                    Action: 'sts:AssumeRole'}]}
     })
 })
 
-/*
-test('IAM Role for Web Crawler has policies assigned', () => {
-    template.hasResourceProperties('AWS::IAM::Policy', {
-        PolicyDocument: {
-            Statement: [
-                {
-                    Action: ['s3:ListAllMyBuckets'],
-                    Effect: 'Allow',
-                    Resource: '*'
-                },
-                {
-                    Action: ['s3:*'],
-                    Effect: 'Allow',
-                    Resource: '*'
-                },
-                {
-                    Action: ['cloudwatch:PutMetricData'],
-                    Effect: 'Allow',
-                    Resource: '*'
-                },
-                {
-                    Action: ['logs:CreateLogStream', 'logs:CreateLogGroup', 'logs:PutLogEvents'],
-                    Effect: 'Allow',
-                    Resource: '*'
-                }
-            ]
-        }
-    });
-})
-*/
 test('Web Crawler runs every 5 minutes', () => {
     template.hasResourceProperties('AWS::Events::Rule', {
         ScheduleExpression: "rate(5 minutes)"
     })
 })
-
 
 test('There are 11 alarms, includes 3 Latency, 3 Availability, 3 BrokenLinks', () => {
     template.resourceCountIs("AWS::CloudWatch::Alarm", 12);
@@ -127,51 +92,30 @@ test('DynamoDB Table is created with correct properties', () => {
     })
 })
 
-
-test('Lambda function has appropriate IAM role', () => {
-    template.hasResourceProperties('AWS::IAM::Role', {
-        Description: 'Lambda IAM Role for DynamoDB-ap-southeast-2-prod'
-        /*Policies: [
-            {
-               PolicyDocument: {
-                    Statement: [
-                        {
-                            Action: ['dynamodb:PutItem', 'dynamodb:UpdateItem', 'dynamodb:GetItem'],
-                        },
-                        {
-                            Action: ['logs:CreateLogStream', 'logs:CreateLogGroup', 'logs:PutLogEvents'],
-                        }
-                    ]
-                }
-            }
-        ]*/
-    })
-})
-
-test('IAM Role for Lambda interacting with DynamoDB is created', () => {
-    template.hasResourceProperties('AWS::IAM::Role', {
-        /*AssumeRolePolicyDocument: {
-            Statement: [
-                {
-                    Action: 'sts:AssumeRole',
-                    Effect: 'Allow',
-                    Principal: {
-                        Service: 'lambda.amazonaws.com'
-                    }
-                }
-            ],
-            //Version: '2012-10-17'
-        },*/
-        //Description: 'Lambda IAM Role for DynamoDB-ap-southeast-2-prod',
-        //RoleName: 'project3-lambda-dynamodb-role-ap-southeast-2-prod'
-    })
-})
-
 test('Lambda Function for DynamoDB is created', () => {
     template.hasResourceProperties('AWS::Lambda::Function', {
         FunctionName: 'lambdadynamoDB-ap-southeast-2-prod',
         Runtime: 'nodejs20.x',
         Handler: 'dynamodb.handler'       
+    })
+})
+
+test('IAM role for Lambda function is created', () => {
+    template.hasResource('AWS::IAM::Role', "");
+    template.hasResourceProperties('AWS::IAM::Role', {
+        Description: 'Lambda IAM Role for DynamoDB-ap-southeast-2-prod'  
+    })
+})
+
+test('IAM Role for Lambda interacting with DynamoDB has policies assigned', () => {
+    template.hasResourceProperties('AWS::IAM::Role', {
+        AssumeRolePolicyDocument: {
+            Statement: [ {
+                    Action: 'sts:AssumeRole',
+                    Effect: 'Allow',
+                    Principal: {Service: 'lambda.amazonaws.com'}}
+            ]},
+        Description: 'Lambda IAM Role for DynamoDB-ap-southeast-2-prod'
     })
 })
 
