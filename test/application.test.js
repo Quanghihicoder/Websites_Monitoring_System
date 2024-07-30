@@ -120,9 +120,10 @@ test('IAM Role for Lambda interacting with DynamoDB has policies assigned', () =
 })
 
 test('Lambda Alias for Web Crawler is created', () => {
-    //template.hasResourceProperties('AWS::Lambda::Alias', {
-    //    AliasName: 'prod'
-    // })
+    template.hasResource('AWS::Lambda::Alias',"");
+    template.hasResourceProperties('AWS::Lambda::Alias',{
+        Name: 'prod'
+    })
 })
 
 test('Lambda Deployment Group for Web Crawler is created', () => {
