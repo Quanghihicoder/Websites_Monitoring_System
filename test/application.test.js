@@ -44,7 +44,18 @@ test('Web Crawler has been created', () => {
 test('IAM Role for Web Crawler is created', () => {
     template.hasResource('AWS::IAM::Role', "");
     template.hasResourceProperties('AWS::IAM::Role',{
-        Description: 'Web Crawler IAM Role-ap-southeast-2-prod'
+        Description: 'Web Crawler IAM Role-ap-southeast-2-prod',
+        AssumeRolePolicyDocument: {
+            Statement: [
+                {
+                    Effect: 'Allow',
+                    Principal: {
+                        Service: 'lambda.amazonaws.com'
+                    },
+                    Action: 'sts:AssumeRole'
+                }
+            ]
+        }
     })
 })
 
