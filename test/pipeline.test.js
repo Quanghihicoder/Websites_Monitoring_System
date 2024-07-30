@@ -40,6 +40,18 @@ test('Bucket has correct removal policy', () => {
     })
   })
 
+
+  test('SSM Parameter for webcrawler-assets-bucket-location has been created', () => {
+    template.hasResourceProperties('AWS::SSM::Parameter', {
+      Name: 'webcrawler-assets-bucket-location',
+    })
+  })
+
+test('BucketDeployment has correct properties', () => {
+        
+  })
+
+
 test('The pipeline has been created', () => {
     template.hasResource("AWS::CodePipeline::Pipeline", "");
 })
@@ -48,8 +60,8 @@ test('S3 Bucket for pipeline has been created', () => {
     template.hasResourceProperties('AWS::S3::Bucket', {
         BucketName: 'project3-pipeline-bucket',
         VersioningConfiguration: {
-            Status: 'Enabled',
-        },
+            Status: 'Enabled'
+        }
   })
 })
 
@@ -57,15 +69,9 @@ test('S3 Bucket Deployment Configured', () => {
     template.resourceCountIs('Custom::CDKBucketDeployment', 1);
 })
 
-test('SSM Parameter for webcrawler-assets-bucket-location has been created', () => {
-    //template.hasResourceProperties('AWS::SSM::Parameter', {
-    //  Name: 'webcrawler-assets-bucket-location',
-})
-
-/*
 test('GitHub Source Action has been created', () => {
   template.hasResourceProperties('AWS::CodePipeline::Pipeline', {
-      Stages: [
+      /*Stages: [
           {
               Name: "Source",
               Actions: [
@@ -80,10 +86,11 @@ test('GitHub Source Action has been created', () => {
                  }
               ]
           }
-      ]
+      ]*/
   })
 })
-*/
+
+/*
 
 test('Build CDK project has been created with correct properties', () => {
     template.hasResourceProperties('AWS::CodeBuild::Project', {

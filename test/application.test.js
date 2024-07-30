@@ -3,35 +3,21 @@
 const cdk = require('aws-cdk-lib');
 const { Template } = require('aws-cdk-lib/assertions');
 const { ApplicationStack } = require('../lib/application-stack');
+const { Metric, Alarm } = require('aws-cdk-lib/aws-cloudwatch');
 
 const Sydney = {
     account: "058264550947",
     region: "ap-southeast-2",
 };
 
+const url ="example.url";
+
+
 const app = new cdk.App();
 const stack = new ApplicationStack(app, 'ProdApplicationStack', { env: Sydney, stackName: "ProdApplicationStack", stage: 'prod' });
 const template = Template.fromStack(stack);
 
 // ======================================================== Unit/Assertions Test =====================================================
-
-// Test for lambda.Code.fromCfnParameters()
-test('Lambda Code is created from CloudFormation parameters', () => {
-    //template.resourceCountIs('AWS::CloudFormation::CustomResource', 1)
-})
-
-// Test for ssm.StringParameter.fromStringParameterName()
-test('SSM Parameter for Web Crawler Bucket Location is referenced', () => {
-    //template.hasResourceProperties('AWS::SSM::Parameter', {
-    //    Name: 'webcrawler-bucket-location'
-    //})
-})
-
-test('S3 bucket is created', () => {
-    //template.hasResourceProperties('AWS::S3::Bucket', {
-    //   BucketName: 'webcrawler-assets-bucket-location'
-    //})
-})
 
 test('Web Crawler has been created', () => {
     template.hasResource("AWS::Lambda::Function", "");
@@ -44,7 +30,7 @@ test('Web Crawler has been created', () => {
 test('IAM Role for Web Crawler is created', () => {
     template.hasResource('AWS::IAM::Role', "");
     template.hasResourceProperties('AWS::IAM::Role',{
-        Description: 'Web Crawler IAM Role-ap-southeast-2-prod',
+        Description: 'Web Crawler IAM Role-ap-southeast-2-prod',       
         AssumeRolePolicyDocument: {
             Statement: [{
                     Effect: 'Allow',
@@ -61,7 +47,18 @@ test('Web Crawler runs every 5 minutes', () => {
     })
 })
 
+test('Alarms for Latency have correct properties', () => {
+    template.hasResourceProperties('AWS::CloudWatch::Alarm', {       
+        ComparisonOperator: 'GreaterThanThreshold',
+        EvaluationPeriods: 1,
+        ActionsEnabled: true,
+        Period: 300, // 5 minutes in seconds
+        TreatMissingData: 'ignore'
+      })
+})
+
 test('There are 11 alarms, includes 3 Latency, 3 Availability, 3 BrokenLinks', () => {
+    template.hasResource('AWS::CloudWatch::Alarm',"");
     template.resourceCountIs("AWS::CloudWatch::Alarm", 12);
 
     template.resourcePropertiesCountIs("AWS::CloudWatch::Alarm", {MetricName: "PageExecutionTime-ap-southeast-2-prod"}, 3)
@@ -146,3 +143,90 @@ it('Matches the snapshot.', () => {
     expect(template.toJSON()).toMatchSnapshot();
 });
     
+// ======================================================== Integration Test =====================================================
+/*
+describe('Alarm Tests', () => {
+    let template;
+  
+    beforeAll(() => {
+      const app = new App();
+      const stack = new MyStack(app, 'MyStack', {
+        env: { region: 'ap-southeast-2' },
+        stage: 'prod'
+      });
+  
+      template = Template.fromStack(stack);
+    });
+  
+    test('Alarms for Latency have correct properties', () => {
+      const urls = ['example.com', 'test.com']; // Example URLs for testing
+      urls.forEach((url, i) => {
+        template.hasResourceProperties('AWS::CloudWatch::Alarm', {
+          AlarmName: `webcrawler-alarm-${url}-latency-ap-southeast-2-prod`,
+          ComparisonOperator: 'GreaterThanThreshold',
+          Threshold: acceptableLatency, // Use the actual value of acceptableLatency
+          EvaluationPeriods: 1,
+          ActionsEnabled: true,
+          Period: 300, // 5 minutes in seconds
+          TreatMissingData: 'ignore',
+          AlarmDescription: `Alarm for ${url} Latency Metric`,
+        });
+      });
+    });
+  
+    test('Alarms for Availability have correct properties', () => {
+      const urls = ['example.com', 'test.com']; // Example URLs for testing
+      urls.forEach((url, i) => {
+        template.hasResourceProperties('AWS::CloudWatch::Alarm', {
+          AlarmName: `webcrawler-alarm-${url}-availability-ap-southeast-2-prod`,
+          ComparisonOperator: 'LessThanThreshold',
+          Threshold: 1,
+          EvaluationPeriods: 1,
+          ActionsEnabled: true,
+          Period: 300, // 5 minutes in seconds
+          TreatMissingData: 'ignore',
+          AlarmDescription: `Alarm for ${url} Availability Metric`,
+        });
+      });
+    });
+  
+    test('Alarms for Broken Links have correct properties', () => {
+      const urls = ['example.com', 'test.com']; // Example URLs for testing
+      urls.forEach((url, i) => {
+        template.hasResourceProperties('AWS::CloudWatch::Alarm', {
+          AlarmName: `webcrawler-alarm-${url}-broken-links-ap-southeast-2-prod`,
+          ComparisonOperator: 'GreaterThanThreshold',
+          Threshold: 0,
+          EvaluationPeriods: 1,
+          ActionsEnabled: true,
+          Period: 300, // 5 minutes in seconds
+          TreatMissingData: 'ignore',
+          AlarmDescription: `Alarm for ${url} BrokenLinks Metric`,
+        });
+      });
+    });
+  
+    test('Alarm for Max Latency has correct properties', () => {
+      template.hasResourceProperties('AWS::CloudWatch::Alarm', {
+        AlarmName: 'webcrawler-alarm-max-latency-ap-southeast-2-prod',
+        ComparisonOperator: 'GreaterThanThreshold',
+        Threshold: acceptableLatency, // Use the actual value of acceptableLatency
+        EvaluationPeriods: 1,
+        ActionsEnabled: true,
+        TreatMissingData: 'ignore',
+        AlarmDescription: 'Alarm for Max Latency Metric',
+      });
+    });
+  
+    test('Alarm for Min Availability has correct properties', () => {
+      template.hasResourceProperties('AWS::CloudWatch::Alarm', {
+        AlarmName: 'webcrawler-alarm-min-reachable-ap-southeast-2-prod',
+        ComparisonOperator: 'LessThanThreshold',
+        Threshold: urls.length, // Use the actual number of URLs
+        EvaluationPeriods: 1,
+        ActionsEnabled: true,
+        TreatMissingData: 'ignore',
+        AlarmDescription: 'Alarm for Min Availability Metric',
+      });
+    });
+  });*/
