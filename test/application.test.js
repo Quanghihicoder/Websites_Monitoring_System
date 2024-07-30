@@ -23,7 +23,7 @@ test('Lambda Code is created from CloudFormation parameters', () => {
 // Test for ssm.StringParameter.fromStringParameterName()
 test('SSM Parameter for Web Crawler Bucket Location is referenced', () => {
     //template.hasResourceProperties('AWS::SSM::Parameter', {
-    //    Name: 'webcrawler-assets-bucket-location'
+    //    Name: 'webcrawler-bucket-location'
     //})
 })
 
@@ -40,24 +40,15 @@ test('Web Crawler has been created', () => {
         Handler: "webcrawler.handler"
     })
 })
-/*
+
 test('IAM Role for Web Crawler is created', () => {
-    template.hasResourceProperties('AWS::IAM::Role', {
-        AssumeRolePolicyDocument: {
-            Statement: [
-                {
-                    Action: 'sts:AssumeRole',
-                    Effect: 'Allow',
-                    Principal: {
-                        Service: 'lambda.amazonaws.com'
-                    }
-                }
-            ]
-        },
-        RoleName: 'webcrawler-iam-role-prod-ap-southeast-2'
+    template.hasResource('AWS::IAM::Role', "");
+    template.hasResourceProperties('AWS::IAM::Role',{
+        Description: 'Web Crawler IAM Role-ap-southeast-2-prod'
     })
 })
 
+/*
 test('IAM Role for Web Crawler has policies assigned', () => {
     template.hasResourceProperties('AWS::IAM::Policy', {
         PolicyDocument: {
