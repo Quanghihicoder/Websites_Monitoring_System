@@ -143,7 +143,7 @@ test('Alarms for Latency have correct properties', () => {
       template.hasResourceProperties('AWS::CloudWatch::Alarm', {
         AlarmName: `webcrawler-alarm-${url}-latency-ap-southeast-2-prod`,
         ComparisonOperator: 'GreaterThanThreshold',
-        Threshold: 3000, // Use the actual value of acceptableLatency
+        Threshold: 2000, // Use the actual value of acceptableLatency
         Period: 300, // 5 minutes in seconds
         AlarmDescription: `Alarm for ${url} Latency Metric`,})
     })
