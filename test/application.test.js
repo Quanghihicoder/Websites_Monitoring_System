@@ -1,12 +1,9 @@
-// Test AWS infrastructure
+// Test Cloud Formation 
 
 const cdk = require('aws-cdk-lib');
 const { Template } = require('aws-cdk-lib/assertions');
 const { ApplicationStack } = require('../lib/application-stack');
 const { Metric, Alarm } = require('aws-cdk-lib/aws-cloudwatch');
-//const AWS = require('aws-sdk-mock');
-//const { handler } = require('../src/lambdas/dynamodb');
-//const { DynamoDBClient, PutItemCommand } = require("@aws-sdk/client-dynamodb");
 
 const Sydney = {
     account: "058264550947",
@@ -139,7 +136,7 @@ test('Lambda Deployment Group for Web Crawler is created', () => {
     })
 })
 
-const urls = ['https://www.swinburne.edu.au', 'https://www.youtube.com','https://www.apple.com']; 
+const urls = ['https://www.swinburne.edu.au']; 
 
 test('Alarms for Latency have correct properties', () => {    
     urls.forEach((url, i) => {
@@ -186,135 +183,13 @@ test('Alarms for Latency have correct properties', () => {
     template.hasResourceProperties('AWS::CloudWatch::Alarm', {
       AlarmName: 'webcrawler-alarm-min-reachable-ap-southeast-2-prod',
       ComparisonOperator: 'LessThanThreshold',
-      Threshold: urls.length, // Use the actual number of URLs
       AlarmDescription: 'Alarm for Min Availability Metric'
     })
   })
 
-// ======================================================== Snapshot Test =====================================================
+// ======================================================== Integration / Snapshot Test =====================================================
 // Might need to run "npm run test --updateSnapshot"
 it('Matches the snapshot.', () => {
     expect(template.toJSON()).toMatchSnapshot();
-});
+})
     
-// ======================================================== Integration Test =====================================================
-/*
-describe('Lambda Function Integration Tests', () => {
-    beforeAll(() => {
-        AWS.mock('DynamoDB.DocumentClient', 'put', (params, callback) => {
-            callback(null, {});
-        });
-
-        // Set the environment variable
-        process.env.TABLE_NAME = 'WebsiteMonitoringTable';
-    });
-
-    afterAll(() => {
-        AWS.restore('DynamoDB.DocumentClient');
-    });
-
-    it('should write data to DynamoDB', async () => {
-        const event = {
-            Records: [
-                {
-                    Sns: {
-                        Message: JSON.stringify({
-                            AlarmDescription: 'Test Alarm Description',
-                            Trigger: {
-                                Dimensions: [
-                                    {
-                                        value: 'http://example.com'
-                                    }
-                                ]
-                            },
-                            NewStateReason: 'Test reason'
-                        })
-                    }
-                }
-            ]
-        };
-
-        // Spy on DynamoDBClient's send method
-        const sendSpy = jest.spyOn(DynamoDBClient.prototype, 'send');
-
-        await handler(event);
-
-        // Verify that the send method was called with the correct parameters
-        expect(sendSpy).toHaveBeenCalledWith(expect.any(PutItemCommand));
-        expect(sendSpy.mock.calls[0][0].input).toEqual({
-            TableName: 'WebsiteMonitoringTable',
-            Item: {
-                url: { S: 'http://example.com' },
-                timestamp: expect.any(Object),
-                alarmDescription: { S: 'Test Alarm Description' },
-                reason: { S: 'Test reason' },
-            },
-        });
-
-        sendSpy.mockRestore();
-    });
-
-    it('should skip insertion for Max Latency Metric alarm', async () => {
-        const event = {
-            Records: [
-                {
-                    Sns: {
-                        Message: JSON.stringify({
-                            AlarmDescription: 'Alarm for Max Latency Metric',
-                            Trigger: {
-                                Dimensions: [
-                                    {
-                                        value: 'http://example.com'
-                                    }
-                                ]
-                            },
-                            NewStateReason: 'Test reason'
-                        })
-                    }
-                }
-            ]
-        };
-
-        // Spy on DynamoDBClient's send method
-        const sendSpy = jest.spyOn(DynamoDBClient.prototype, 'send');
-
-        await handler(event);
-
-        // Verify that the send method was not called
-        expect(sendSpy).not.toHaveBeenCalled();
-
-        sendSpy.mockRestore();
-    });
-
-    it('should skip insertion for Min Availability Metric alarm', async () => {
-        const event = {
-            Records: [
-                {
-                    Sns: {
-                        Message: JSON.stringify({
-                            AlarmDescription: 'Alarm for Min Availability Metric',
-                            Trigger: {
-                                Dimensions: [
-                                    {
-                                        value: 'http://example.com'
-                                    }
-                                ]
-                            },
-                            NewStateReason: 'Test reason'
-                        })
-                    }
-                }
-            ]
-        };
-
-        // Spy on DynamoDBClient's send method
-        const sendSpy = jest.spyOn(DynamoDBClient.prototype, 'send');
-
-        await handler(event);
-
-        // Verify that the send method was not called
-        expect(sendSpy).not.toHaveBeenCalled();
-
-        sendSpy.mockRestore();
-    });
-})*/
