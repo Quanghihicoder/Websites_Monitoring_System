@@ -3,7 +3,7 @@ const cdk = require('aws-cdk-lib');
 const { Template } = require('aws-cdk-lib/assertions');
 const { ApplicationStack } = require("../lib/application-stack");
 const { PipelineStack } = require("../lib/pipeline-stack");
-const { Bucket } = require('aws-cdk-lib/aws-s3');
+//const { Bucket } = require('aws-cdk-lib/aws-s3');
 
 const Sydney = {
   account: "058264550947",
