@@ -22,55 +22,15 @@ describe('Lambda Function Integration Tests', () => {
 
         ddbMock.on(PutItemCommand).resolves(
             {
-                TableName: process.env.TABLE_NAME,
+                TableName: 'TestTable',
                 Item: {
                     url: { S: "http://example.com" },
-                    //timestamp: { S: new Date().toDateString() },
                     alarmDescription: { S: "value" },
                     reason: { S: "value"},
                 },
 
             }
-        )
-        /*
-        const event = {
-            Records: [
-                {
-                    Sns: {
-                        Message: JSON.stringify({
-                            AlarmDescription: 'Test Alarm Description',
-                            Trigger: {
-                                Dimensions: [
-                                    {
-                                        value: 'http://example.com'
-                                    }
-                                ]
-                            },
-                            NewStateReason: 'Test reason'
-                        })
-                    }
-                }
-            ]
-        };
-
-        await handler(event);
-
-        //expect(ddbMock).toHaveReceivedCommand(PutItemCommand);
-
-        const calls = ddbMock.commandCalls(PutItemCommand);
-        expect(calls.length).toBe(1);
-
-
-        const commandInput = calls[0].args[0].input;
-        expect(commandInput).toEqual({
-            TableName: 'TestTable',
-            Item: {
-                url: { S: 'http://example.com' },
-                //timestamp: expect.any(Object),
-                alarmDescription: { S: 'Test Alarm Description' },
-                reason: { S: 'Test reason' },
-            },
-        });*/
+        )     
     });
 })
     
