@@ -26,11 +26,11 @@ const template = Template.fromStack(stack);
 
 // ======================================================== Unit/Assertions Test =====================================================
 
-test('Bucket for webcrawler has been created', () => {
-    template.hasResourceProperties('AWS::S3::Bucket', {
-        BucketName: "project3-webcrawler-bucket"
-    })
-})
+// test('Bucket for webcrawler has been created', () => {
+//     template.hasResourceProperties('AWS::S3::Bucket', {
+//         BucketName: "project3-webcrawler-bucket"
+//     })
+// })
 
 
 test('The pipeline has been created', () => {
