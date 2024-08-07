@@ -20,6 +20,7 @@ describe("Integration Tests for AWS CDK Stack", () => {
     const cfMock = mockClient(CloudFormationClient);
     const lambdaMock = mockClient(LambdaClient);
     const snsMock = mockClient(SNSClient);
+    const cloudWatchMock = mockClient(CloudWatchClient);
     const topicArn ="TestTopic";
 
     beforeAll(() => {
@@ -38,6 +39,11 @@ describe("Integration Tests for AWS CDK Stack", () => {
                 { SubscriptionArn: "TestTopic" },
                 { SubscriptionArn: "TestTopic" }
         ]
+        });
+
+        cloudWatchMock.on(DescribeAlarmsCommand).resolves({
+            MetricAlarms: new Array(12).fill({ AlarmName: "webcrawler-alarm" })
+            
         });
     });
 
