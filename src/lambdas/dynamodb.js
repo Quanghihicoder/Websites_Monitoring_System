@@ -9,13 +9,6 @@ exports.handler = async (event) => {
     for (const record of event.Records) {
         const metricData = JSON.parse(record.Sns.Message);
 
-        // Skip insertion if the alarm description matches specific criteria
-        if (metricData.AlarmDescription === 'Alarm for Max Latency Metric' ||
-            metricData.AlarmDescription === 'Alarm for Min Availability Metric') {
-            console.log('Skipping insertion for:', metricData.AlarmDescription);
-            continue;
-        }
-
         const params = {
             TableName: tableName,
             Item: {
