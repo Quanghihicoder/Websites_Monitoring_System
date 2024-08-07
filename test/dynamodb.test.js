@@ -24,7 +24,7 @@ describe('Lambda Function Integration Tests', () => {
             {
                 TableName: 'TestTable',
                 Item: {
-                    url: { S: "http://example.com" },
+                    //url: { S: "http://example.com" },
                     alarmDescription: { S: "value" },
                     reason: { S: "value"},
                 },
