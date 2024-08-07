@@ -1,4 +1,4 @@
-// Test webcrawler function
+// Test webcrawler function / integration
 const { mockClient } = require('aws-sdk-client-mock');
 const { S3Client, GetObjectCommand} = require("@aws-sdk/client-s3");
 const { CloudWatchClient, PutMetricDataCommand } = require("@aws-sdk/client-cloudwatch");

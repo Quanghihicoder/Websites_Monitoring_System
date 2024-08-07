@@ -20,7 +20,7 @@ exports.handler = async (event) => {
             TableName: tableName,
             Item: {
                 url: { S: metricData.Trigger.Dimensions[0].value },
-                timestamp: { S: new Date().toISOString() },
+                timestamp: { S: new Date().toDateString() },
                 alarmDescription: { S: metricData.AlarmDescription },
                 reason: { S: metricData.NewStateReason },
             },
