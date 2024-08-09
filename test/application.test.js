@@ -10,9 +10,6 @@ const Sydney = {
     region: "ap-southeast-2",
 };
 
-const url ="example.url";
-
-
 const app = new cdk.App();
 const stack = new ApplicationStack(app, 'ProdApplicationStack', { env: Sydney, stackName: "ProdApplicationStack", stage: 'prod' });
 const template = Template.fromStack(stack);

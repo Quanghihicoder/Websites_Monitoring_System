@@ -49,10 +49,11 @@ test('SSM Parameter for webcrawler-assets-bucket-location has been created', () 
     })
   })
 
-test('The pipeline has been created', () => {
-    template.hasResource("AWS::CodePipeline::Pipeline", "");
-})
 
 test('S3 Bucket Deployment Configured', () => {
     template.resourceCountIs('Custom::CDKBucketDeployment', 1);
+})
+
+test('The pipeline has been created', () => {
+  template.hasResource("AWS::CodePipeline::Pipeline", "");
 })
