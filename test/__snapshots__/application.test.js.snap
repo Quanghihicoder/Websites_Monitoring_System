@@ -1,0 +1,1397 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Matches the snapshot. 1`] = `
+{
+  "Parameters": {
+    "BootstrapVersion": {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": {
+    "AlarmAvailabilityhttpswwwapplecomB7C34EE8": {
+      "Properties": {
+        "ActionsEnabled": true,
+        "AlarmActions": [
+          {
+            "Ref": "EmailTopic3164B1A3",
+          },
+        ],
+        "AlarmDescription": "Alarm for https://www.apple.com Availability Metric",
+        "AlarmName": "webcrawler-alarm-https://www.apple.com-availability-prod",
+        "ComparisonOperator": "LessThanThreshold",
+        "Dimensions": [
+          {
+            "Name": "url",
+            "Value": "https://www.apple.com",
+          },
+        ],
+        "EvaluationPeriods": 1,
+        "MetricName": "PageAvailability-prod",
+        "Namespace": "MonitorWebsites-prod",
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 1,
+        "TreatMissingData": "ignore",
+      },
+      "Type": "AWS::CloudWatch::Alarm",
+    },
+    "AlarmAvailabilityhttpswwwswinburneeduau458B79AB": {
+      "Properties": {
+        "ActionsEnabled": true,
+        "AlarmActions": [
+          {
+            "Ref": "EmailTopic3164B1A3",
+          },
+        ],
+        "AlarmDescription": "Alarm for https://www.swinburne.edu.au Availability Metric",
+        "AlarmName": "webcrawler-alarm-https://www.swinburne.edu.au-availability-prod",
+        "ComparisonOperator": "LessThanThreshold",
+        "Dimensions": [
+          {
+            "Name": "url",
+            "Value": "https://www.swinburne.edu.au",
+          },
+        ],
+        "EvaluationPeriods": 1,
+        "MetricName": "PageAvailability-prod",
+        "Namespace": "MonitorWebsites-prod",
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 1,
+        "TreatMissingData": "ignore",
+      },
+      "Type": "AWS::CloudWatch::Alarm",
+    },
+    "AlarmAvailabilityhttpswwwyoutubecom31080C4B": {
+      "Properties": {
+        "ActionsEnabled": true,
+        "AlarmActions": [
+          {
+            "Ref": "EmailTopic3164B1A3",
+          },
+        ],
+        "AlarmDescription": "Alarm for https://www.youtube.com Availability Metric",
+        "AlarmName": "webcrawler-alarm-https://www.youtube.com-availability-prod",
+        "ComparisonOperator": "LessThanThreshold",
+        "Dimensions": [
+          {
+            "Name": "url",
+            "Value": "https://www.youtube.com",
+          },
+        ],
+        "EvaluationPeriods": 1,
+        "MetricName": "PageAvailability-prod",
+        "Namespace": "MonitorWebsites-prod",
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 1,
+        "TreatMissingData": "ignore",
+      },
+      "Type": "AWS::CloudWatch::Alarm",
+    },
+    "AlarmBrokenLinkshttpswwwapplecomC397B1AF": {
+      "Properties": {
+        "ActionsEnabled": true,
+        "AlarmActions": [
+          {
+            "Ref": "EmailTopic3164B1A3",
+          },
+        ],
+        "AlarmDescription": "Alarm for https://www.apple.com Broken Links Metric",
+        "AlarmName": "webcrawler-alarm-https://www.apple.com-broken-links-prod",
+        "ComparisonOperator": "GreaterThanThreshold",
+        "Dimensions": [
+          {
+            "Name": "url",
+            "Value": "https://www.apple.com",
+          },
+        ],
+        "EvaluationPeriods": 1,
+        "MetricName": "PageBrokenLinks-prod",
+        "Namespace": "MonitorWebsites-prod",
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 0,
+        "TreatMissingData": "ignore",
+      },
+      "Type": "AWS::CloudWatch::Alarm",
+    },
+    "AlarmBrokenLinkshttpswwwswinburneeduauF9E6770B": {
+      "Properties": {
+        "ActionsEnabled": true,
+        "AlarmActions": [
+          {
+            "Ref": "EmailTopic3164B1A3",
+          },
+        ],
+        "AlarmDescription": "Alarm for https://www.swinburne.edu.au Broken Links Metric",
+        "AlarmName": "webcrawler-alarm-https://www.swinburne.edu.au-broken-links-prod",
+        "ComparisonOperator": "GreaterThanThreshold",
+        "Dimensions": [
+          {
+            "Name": "url",
+            "Value": "https://www.swinburne.edu.au",
+          },
+        ],
+        "EvaluationPeriods": 1,
+        "MetricName": "PageBrokenLinks-prod",
+        "Namespace": "MonitorWebsites-prod",
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 0,
+        "TreatMissingData": "ignore",
+      },
+      "Type": "AWS::CloudWatch::Alarm",
+    },
+    "AlarmBrokenLinkshttpswwwyoutubecomCC1D4876": {
+      "Properties": {
+        "ActionsEnabled": true,
+        "AlarmActions": [
+          {
+            "Ref": "EmailTopic3164B1A3",
+          },
+        ],
+        "AlarmDescription": "Alarm for https://www.youtube.com Broken Links Metric",
+        "AlarmName": "webcrawler-alarm-https://www.youtube.com-broken-links-prod",
+        "ComparisonOperator": "GreaterThanThreshold",
+        "Dimensions": [
+          {
+            "Name": "url",
+            "Value": "https://www.youtube.com",
+          },
+        ],
+        "EvaluationPeriods": 1,
+        "MetricName": "PageBrokenLinks-prod",
+        "Namespace": "MonitorWebsites-prod",
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 0,
+        "TreatMissingData": "ignore",
+      },
+      "Type": "AWS::CloudWatch::Alarm",
+    },
+    "AlarmLatencyhttpswwwapplecom9E0EF1E2": {
+      "Properties": {
+        "ActionsEnabled": true,
+        "AlarmActions": [
+          {
+            "Ref": "EmailTopic3164B1A3",
+          },
+        ],
+        "AlarmDescription": "Alarm for https://www.apple.com Latency Metric",
+        "AlarmName": "webcrawler-alarm-https://www.apple.com-latency-prod",
+        "ComparisonOperator": "GreaterThanThreshold",
+        "Dimensions": [
+          {
+            "Name": "url",
+            "Value": "https://www.apple.com",
+          },
+        ],
+        "EvaluationPeriods": 1,
+        "MetricName": "PageExecutionTime-prod",
+        "Namespace": "MonitorWebsites-prod",
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 800,
+        "TreatMissingData": "ignore",
+      },
+      "Type": "AWS::CloudWatch::Alarm",
+    },
+    "AlarmLatencyhttpswwwswinburneeduauC0F6DDFF": {
+      "Properties": {
+        "ActionsEnabled": true,
+        "AlarmActions": [
+          {
+            "Ref": "EmailTopic3164B1A3",
+          },
+        ],
+        "AlarmDescription": "Alarm for https://www.swinburne.edu.au Latency Metric",
+        "AlarmName": "webcrawler-alarm-https://www.swinburne.edu.au-latency-prod",
+        "ComparisonOperator": "GreaterThanThreshold",
+        "Dimensions": [
+          {
+            "Name": "url",
+            "Value": "https://www.swinburne.edu.au",
+          },
+        ],
+        "EvaluationPeriods": 1,
+        "MetricName": "PageExecutionTime-prod",
+        "Namespace": "MonitorWebsites-prod",
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 800,
+        "TreatMissingData": "ignore",
+      },
+      "Type": "AWS::CloudWatch::Alarm",
+    },
+    "AlarmLatencyhttpswwwyoutubecomA793D754": {
+      "Properties": {
+        "ActionsEnabled": true,
+        "AlarmActions": [
+          {
+            "Ref": "EmailTopic3164B1A3",
+          },
+        ],
+        "AlarmDescription": "Alarm for https://www.youtube.com Latency Metric",
+        "AlarmName": "webcrawler-alarm-https://www.youtube.com-latency-prod",
+        "ComparisonOperator": "GreaterThanThreshold",
+        "Dimensions": [
+          {
+            "Name": "url",
+            "Value": "https://www.youtube.com",
+          },
+        ],
+        "EvaluationPeriods": 1,
+        "MetricName": "PageExecutionTime-prod",
+        "Namespace": "MonitorWebsites-prod",
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 800,
+        "TreatMissingData": "ignore",
+      },
+      "Type": "AWS::CloudWatch::Alarm",
+    },
+    "AlarmMaxLatency862F207A": {
+      "Properties": {
+        "ActionsEnabled": true,
+        "AlarmActions": [
+          {
+            "Ref": "EmailTopic3164B1A3",
+          },
+        ],
+        "AlarmDescription": "Alarm for Max Latency Metric",
+        "AlarmName": "webcrawler-alarm-max-latency-prod",
+        "ComparisonOperator": "GreaterThanThreshold",
+        "EvaluationPeriods": 1,
+        "Metrics": [
+          {
+            "Expression": "MAX(METRICS())",
+            "Id": "expr_1",
+            "Label": "Maximum Execution Time",
+          },
+          {
+            "Id": "ml0",
+            "MetricStat": {
+              "Metric": {
+                "Dimensions": [
+                  {
+                    "Name": "url",
+                    "Value": "https://www.swinburne.edu.au",
+                  },
+                ],
+                "MetricName": "PageExecutionTime-prod",
+                "Namespace": "MonitorWebsites-prod",
+              },
+              "Period": 900,
+              "Stat": "Average",
+            },
+            "ReturnData": false,
+          },
+          {
+            "Id": "ml1",
+            "MetricStat": {
+              "Metric": {
+                "Dimensions": [
+                  {
+                    "Name": "url",
+                    "Value": "https://www.youtube.com",
+                  },
+                ],
+                "MetricName": "PageExecutionTime-prod",
+                "Namespace": "MonitorWebsites-prod",
+              },
+              "Period": 900,
+              "Stat": "Average",
+            },
+            "ReturnData": false,
+          },
+          {
+            "Id": "ml2",
+            "MetricStat": {
+              "Metric": {
+                "Dimensions": [
+                  {
+                    "Name": "url",
+                    "Value": "https://www.apple.com",
+                  },
+                ],
+                "MetricName": "PageExecutionTime-prod",
+                "Namespace": "MonitorWebsites-prod",
+              },
+              "Period": 900,
+              "Stat": "Average",
+            },
+            "ReturnData": false,
+          },
+        ],
+        "Threshold": 800,
+        "TreatMissingData": "ignore",
+      },
+      "Type": "AWS::CloudWatch::Alarm",
+    },
+    "AlarmMinAvailabilityFD52DDCB": {
+      "Properties": {
+        "ActionsEnabled": true,
+        "AlarmActions": [
+          {
+            "Ref": "EmailTopic3164B1A3",
+          },
+        ],
+        "AlarmDescription": "Alarm for Min Availability Metric",
+        "AlarmName": "webcrawler-alarm-min-availability-prod",
+        "ComparisonOperator": "LessThanThreshold",
+        "EvaluationPeriods": 1,
+        "Metrics": [
+          {
+            "Expression": "SUM(METRICS())",
+            "Id": "expr_1",
+            "Label": "Number of availabile websites",
+          },
+          {
+            "Id": "ma0",
+            "MetricStat": {
+              "Metric": {
+                "Dimensions": [
+                  {
+                    "Name": "url",
+                    "Value": "https://www.swinburne.edu.au",
+                  },
+                ],
+                "MetricName": "PageAvailability-prod",
+                "Namespace": "MonitorWebsites-prod",
+              },
+              "Period": 900,
+              "Stat": "Average",
+            },
+            "ReturnData": false,
+          },
+          {
+            "Id": "ma1",
+            "MetricStat": {
+              "Metric": {
+                "Dimensions": [
+                  {
+                    "Name": "url",
+                    "Value": "https://www.youtube.com",
+                  },
+                ],
+                "MetricName": "PageAvailability-prod",
+                "Namespace": "MonitorWebsites-prod",
+              },
+              "Period": 900,
+              "Stat": "Average",
+            },
+            "ReturnData": false,
+          },
+          {
+            "Id": "ma2",
+            "MetricStat": {
+              "Metric": {
+                "Dimensions": [
+                  {
+                    "Name": "url",
+                    "Value": "https://www.apple.com",
+                  },
+                ],
+                "MetricName": "PageAvailability-prod",
+                "Namespace": "MonitorWebsites-prod",
+              },
+              "Period": 900,
+              "Stat": "Average",
+            },
+            "ReturnData": false,
+          },
+        ],
+        "Threshold": 3,
+        "TreatMissingData": "ignore",
+      },
+      "Type": "AWS::CloudWatch::Alarm",
+    },
+    "AlarmWriter0BBFE10D": {
+      "DependsOn": [
+        "AlarmWriterRoleDefaultPolicy64B91C7C",
+        "AlarmWriterRoleC45DEC96",
+      ],
+      "Properties": {
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-058264550947-ap-southeast-2",
+          "S3Key": "382f18e1be045f74fd48b32fa8cd946252a61edce838aeca25e9f74e30542dbf.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "TABLE_NAME": {
+              "Ref": "WebCrawlerAlarmDynamoDB36F7509D",
+            },
+          },
+        },
+        "FunctionName": "alarmwriter-prod",
+        "Handler": "alarmwriter.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "AlarmWriterRoleC45DEC96",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs20.x",
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "AlarmWriterAlias3D56C40A": {
+      "Properties": {
+        "FunctionName": {
+          "Ref": "AlarmWriter0BBFE10D",
+        },
+        "FunctionVersion": {
+          "Fn::GetAtt": [
+            "AlarmWriterCurrentVersionE359C5AEe7ee2f6ab0a23e15d06d7f5658a293e6",
+            "Version",
+          ],
+        },
+        "Name": "alarmwriter-alias-prod",
+      },
+      "Type": "AWS::Lambda::Alias",
+      "UpdatePolicy": {
+        "CodeDeployLambdaAliasUpdate": {
+          "ApplicationName": {
+            "Ref": "AlarmWriterDeploymentApplicationCD632438",
+          },
+          "DeploymentGroupName": {
+            "Ref": "AlarmWriterDeploymentBD23AA57",
+          },
+        },
+      },
+    },
+    "AlarmWriterAllowInvokeProdApplicationStackEmailTopicA81BD26F16049274": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "AlarmWriter0BBFE10D",
+            "Arn",
+          ],
+        },
+        "Principal": "sns.amazonaws.com",
+        "SourceArn": {
+          "Ref": "EmailTopic3164B1A3",
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "AlarmWriterCurrentVersionE359C5AEe7ee2f6ab0a23e15d06d7f5658a293e6": {
+      "Properties": {
+        "FunctionName": {
+          "Ref": "AlarmWriter0BBFE10D",
+        },
+      },
+      "Type": "AWS::Lambda::Version",
+    },
+    "AlarmWriterDeploymentApplicationCD632438": {
+      "DependsOn": [
+        "CustomConfig7A6AC60F",
+      ],
+      "Properties": {
+        "ComputePlatform": "Lambda",
+      },
+      "Type": "AWS::CodeDeploy::Application",
+    },
+    "AlarmWriterDeploymentBD23AA57": {
+      "DependsOn": [
+        "CustomConfig7A6AC60F",
+      ],
+      "Properties": {
+        "ApplicationName": {
+          "Ref": "AlarmWriterDeploymentApplicationCD632438",
+        },
+        "AutoRollbackConfiguration": {
+          "Enabled": true,
+          "Events": [
+            "DEPLOYMENT_FAILURE",
+            "DEPLOYMENT_STOP_ON_REQUEST",
+          ],
+        },
+        "DeploymentConfigName": {
+          "Ref": "CustomConfig7A6AC60F",
+        },
+        "DeploymentStyle": {
+          "DeploymentOption": "WITH_TRAFFIC_CONTROL",
+          "DeploymentType": "BLUE_GREEN",
+        },
+        "ServiceRoleArn": {
+          "Fn::GetAtt": [
+            "AlarmWriterDeploymentServiceRole3074AEE4",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::CodeDeploy::DeploymentGroup",
+    },
+    "AlarmWriterDeploymentServiceRole3074AEE4": {
+      "DependsOn": [
+        "CustomConfig7A6AC60F",
+      ],
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "codedeploy.ap-southeast-2.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSCodeDeployRoleForLambdaLimited",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "AlarmWriterEmailTopicB82FA0A4": {
+      "Properties": {
+        "Endpoint": {
+          "Fn::GetAtt": [
+            "AlarmWriter0BBFE10D",
+            "Arn",
+          ],
+        },
+        "Protocol": "lambda",
+        "TopicArn": {
+          "Ref": "EmailTopic3164B1A3",
+        },
+      },
+      "Type": "AWS::SNS::Subscription",
+    },
+    "AlarmWriterRoleC45DEC96": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Lambda IAM Role for DynamoDB-ap-southeast-2-prod",
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "AlarmWriterRoleDefaultPolicy64B91C7C": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:GetItem",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "WebCrawlerAlarmDynamoDB36F7509D",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:CreateLogGroup",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "AlarmWriterRoleDefaultPolicy64B91C7C",
+        "Roles": [
+          {
+            "Ref": "AlarmWriterRoleC45DEC96",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536": {
+      "DependsOn": [
+        "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF",
+        "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265",
+      ],
+      "Properties": {
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-058264550947-ap-southeast-2",
+          "S3Key": "2d56e153cac88d3e0c2f842e8e6f6783b8725bf91f95e0673b4725448a56e96d.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "AWS_CA_BUNDLE": "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem",
+          },
+        },
+        "Handler": "index.handler",
+        "Layers": [
+          {
+            "Ref": "WebCrawlerBucketDeploymentAwsCliLayer565B9EEF",
+          },
+        ],
+        "Role": {
+          "Fn::GetAtt": [
+            "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265",
+            "Arn",
+          ],
+        },
+        "Runtime": "python3.9",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":s3:::cdk-hnb659fds-assets-058264550947-ap-southeast-2",
+                    ],
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":s3:::cdk-hnb659fds-assets-058264550947-ap-southeast-2/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "WebCrawlerBucket3E30817F",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "WebCrawlerBucket3E30817F",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF",
+        "Roles": [
+          {
+            "Ref": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "CustomConfig7A6AC60F": {
+      "Properties": {
+        "ComputePlatform": "Lambda",
+        "TrafficRoutingConfig": {
+          "TimeBasedCanary": {
+            "CanaryInterval": 15,
+            "CanaryPercentage": 95,
+          },
+          "Type": "TimeBasedCanary",
+        },
+      },
+      "Type": "AWS::CodeDeploy::DeploymentConfig",
+    },
+    "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": {
+      "DependsOn": [
+        "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+      ],
+      "Properties": {
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-058264550947-ap-southeast-2",
+          "S3Key": "2eb6a831b107939f63cfebf68e6316e1a40f79fc99cae0fee9b333bac8d29bc4.zip",
+        },
+        "Description": {
+          "Fn::Join": [
+            "",
+            [
+              "Lambda function for auto-deleting objects in ",
+              {
+                "Ref": "WebCrawlerBucket3E30817F",
+              },
+              " S3 bucket.",
+            ],
+          ],
+        },
+        "Handler": "index.handler",
+        "MemorySize": 128,
+        "Role": {
+          "Fn::GetAtt": [
+            "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs18.x",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Sub": "arn:\${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "EmailTopic3164B1A3": {
+      "Properties": {
+        "DisplayName": "webcrawler-email-topic-prod",
+      },
+      "Type": "AWS::SNS::Topic",
+    },
+    "EmailTopicakilasinikigmailcom67450CB9": {
+      "Properties": {
+        "Endpoint": "akilasiniki@gmail.com",
+        "Protocol": "email",
+        "TopicArn": {
+          "Ref": "EmailTopic3164B1A3",
+        },
+      },
+      "Type": "AWS::SNS::Subscription",
+    },
+    "EmailTopichoangquang2508gmailcomE98E3AFB": {
+      "Properties": {
+        "Endpoint": "hoangquang2508@gmail.com",
+        "Protocol": "email",
+        "TopicArn": {
+          "Ref": "EmailTopic3164B1A3",
+        },
+      },
+      "Type": "AWS::SNS::Subscription",
+    },
+    "WebCrawler0D5FB62D": {
+      "DependsOn": [
+        "WebCrawlerRoleDefaultPolicy11DBEE8A",
+        "WebCrawlerRole5028D7E6",
+      ],
+      "Properties": {
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-058264550947-ap-southeast-2",
+          "S3Key": "382f18e1be045f74fd48b32fa8cd946252a61edce838aeca25e9f74e30542dbf.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "BUCKET": {
+              "Ref": "WebCrawlerBucket3E30817F",
+            },
+            "METRIC_AVAILABILITY_NAME": "PageAvailability-prod",
+            "METRIC_BROKENLINKS_NAME": "PageBrokenLinks-prod",
+            "METRIC_LATENCY_NAME": "PageExecutionTime-prod",
+            "METRIC_NAMESPACE": "MonitorWebsites-prod",
+          },
+        },
+        "FunctionName": "webcrawler-prod",
+        "Handler": "webcrawler.handler",
+        "Layers": [
+          "arn:aws:lambda:ap-southeast-2:580247275435:layer:LambdaInsightsExtension:12",
+        ],
+        "LoggingConfig": {
+          "LogFormat": "JSON",
+          "LogGroup": {
+            "Ref": "WebCrawlerLogGroup7F4943DB",
+          },
+        },
+        "MemorySize": 512,
+        "Role": {
+          "Fn::GetAtt": [
+            "WebCrawlerRole5028D7E6",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs20.x",
+        "Timeout": 30,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "WebCrawlerAlarmDynamoDB36F7509D": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "url",
+            "AttributeType": "S",
+          },
+          {
+            "AttributeName": "timestamp",
+            "AttributeType": "S",
+          },
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "url",
+            "KeyType": "HASH",
+          },
+          {
+            "AttributeName": "timestamp",
+            "KeyType": "RANGE",
+          },
+        ],
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 5,
+          "WriteCapacityUnits": 5,
+        },
+        "TableName": "webcrawler-alarm-dynamodb-prod",
+      },
+      "Type": "AWS::DynamoDB::Table",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "WebCrawlerAliasF07B379A": {
+      "Properties": {
+        "FunctionName": {
+          "Ref": "WebCrawler0D5FB62D",
+        },
+        "FunctionVersion": {
+          "Fn::GetAtt": [
+            "WebCrawlerCurrentVersion66C5EDC7430eed113f35d3c673ae69e0ad45b746",
+            "Version",
+          ],
+        },
+        "Name": "webcrawler-alias-prod",
+      },
+      "Type": "AWS::Lambda::Alias",
+      "UpdatePolicy": {
+        "CodeDeployLambdaAliasUpdate": {
+          "ApplicationName": {
+            "Ref": "WebCrawlerDeploymentApplication665DCFD8",
+          },
+          "DeploymentGroupName": {
+            "Ref": "WebCrawlerDeploymentA7F456FE",
+          },
+        },
+      },
+    },
+    "WebCrawlerBucket3E30817F": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "BucketName": "webcrawler-bucket-prod",
+        "Tags": [
+          {
+            "Key": "aws-cdk:auto-delete-objects",
+            "Value": "true",
+          },
+          {
+            "Key": "aws-cdk:cr-owned:475c2835",
+            "Value": "true",
+          },
+        ],
+      },
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "WebCrawlerBucketAutoDeleteObjectsCustomResource2980A06D": {
+      "DeletionPolicy": "Delete",
+      "DependsOn": [
+        "WebCrawlerBucketPolicy651CCB20",
+      ],
+      "Properties": {
+        "BucketName": {
+          "Ref": "WebCrawlerBucket3E30817F",
+        },
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "Custom::S3AutoDeleteObjects",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "WebCrawlerBucketDeploymentAwsCliLayer565B9EEF": {
+      "Properties": {
+        "Content": {
+          "S3Bucket": "cdk-hnb659fds-assets-058264550947-ap-southeast-2",
+          "S3Key": "3322b7049fb0ed2b7cbb644a2ada8d1116ff80c32dca89e6ada846b5de26f961.zip",
+        },
+        "Description": "/opt/awscli/aws",
+      },
+      "Type": "AWS::Lambda::LayerVersion",
+    },
+    "WebCrawlerBucketDeploymentCustomResource927E9A1E": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "DestinationBucketName": {
+          "Ref": "WebCrawlerBucket3E30817F",
+        },
+        "Prune": true,
+        "RetainOnDelete": false,
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536",
+            "Arn",
+          ],
+        },
+        "SourceBucketNames": [
+          "cdk-hnb659fds-assets-058264550947-ap-southeast-2",
+        ],
+        "SourceObjectKeys": [
+          "5ad477224e3af7f80b27c4af182c5f993e2d112f204536988e770367822565c3.zip",
+        ],
+      },
+      "Type": "Custom::CDKBucketDeployment",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "WebCrawlerBucketPolicy651CCB20": {
+      "Properties": {
+        "Bucket": {
+          "Ref": "WebCrawlerBucket3E30817F",
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:PutBucketPolicy",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+              ],
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::GetAtt": [
+                    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+                    "Arn",
+                  ],
+                },
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "WebCrawlerBucket3E30817F",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "WebCrawlerBucket3E30817F",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::S3::BucketPolicy",
+    },
+    "WebCrawlerCPUAlarm08815C0F": {
+      "Properties": {
+        "AlarmDescription": "Alarm for Web Crawler CPU Runtime Metric",
+        "AlarmName": "webcrawler-cpu-alarm-prod",
+        "ComparisonOperator": "GreaterThanThreshold",
+        "Dimensions": [
+          {
+            "Name": "function_name",
+            "Value": {
+              "Ref": "WebCrawler0D5FB62D",
+            },
+          },
+        ],
+        "EvaluationPeriods": 1,
+        "MetricName": "cpu_total_time",
+        "Namespace": "LambdaInsights",
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 1200,
+        "TreatMissingData": "ignore",
+      },
+      "Type": "AWS::CloudWatch::Alarm",
+    },
+    "WebCrawlerCurrentVersion66C5EDC7430eed113f35d3c673ae69e0ad45b746": {
+      "Properties": {
+        "FunctionName": {
+          "Ref": "WebCrawler0D5FB62D",
+        },
+      },
+      "Type": "AWS::Lambda::Version",
+    },
+    "WebCrawlerDeploymentA7F456FE": {
+      "DependsOn": [
+        "CustomConfig7A6AC60F",
+      ],
+      "Properties": {
+        "AlarmConfiguration": {
+          "Alarms": [
+            {
+              "Name": {
+                "Ref": "WebCrawlerCPUAlarm08815C0F",
+              },
+            },
+            {
+              "Name": {
+                "Ref": "WebCrawlerMemmoryAlarmE500BB39",
+              },
+            },
+          ],
+          "Enabled": true,
+        },
+        "ApplicationName": {
+          "Ref": "WebCrawlerDeploymentApplication665DCFD8",
+        },
+        "AutoRollbackConfiguration": {
+          "Enabled": true,
+          "Events": [
+            "DEPLOYMENT_FAILURE",
+            "DEPLOYMENT_STOP_ON_REQUEST",
+            "DEPLOYMENT_STOP_ON_ALARM",
+          ],
+        },
+        "DeploymentConfigName": {
+          "Ref": "CustomConfig7A6AC60F",
+        },
+        "DeploymentStyle": {
+          "DeploymentOption": "WITH_TRAFFIC_CONTROL",
+          "DeploymentType": "BLUE_GREEN",
+        },
+        "ServiceRoleArn": {
+          "Fn::GetAtt": [
+            "WebCrawlerDeploymentServiceRoleDA5185F0",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::CodeDeploy::DeploymentGroup",
+    },
+    "WebCrawlerDeploymentApplication665DCFD8": {
+      "DependsOn": [
+        "CustomConfig7A6AC60F",
+      ],
+      "Properties": {
+        "ComputePlatform": "Lambda",
+      },
+      "Type": "AWS::CodeDeploy::Application",
+    },
+    "WebCrawlerDeploymentServiceRoleDA5185F0": {
+      "DependsOn": [
+        "CustomConfig7A6AC60F",
+      ],
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "codedeploy.ap-southeast-2.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSCodeDeployRoleForLambdaLimited",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "WebCrawlerEvent344B777F": {
+      "Properties": {
+        "Description": "Web Crawler run every 5 mins",
+        "ScheduleExpression": "rate(5 minutes)",
+        "State": "ENABLED",
+        "Targets": [
+          {
+            "Arn": {
+              "Fn::GetAtt": [
+                "WebCrawler0D5FB62D",
+                "Arn",
+              ],
+            },
+            "Id": "Target0",
+          },
+        ],
+      },
+      "Type": "AWS::Events::Rule",
+    },
+    "WebCrawlerEventAllowEventRuleProdApplicationStackWebCrawler112ADBB6C4607F18": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "WebCrawler0D5FB62D",
+            "Arn",
+          ],
+        },
+        "Principal": "events.amazonaws.com",
+        "SourceArn": {
+          "Fn::GetAtt": [
+            "WebCrawlerEvent344B777F",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "WebCrawlerLogGroup7F4943DB": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "LogGroupName": "webcrawler-loggroup-prod",
+        "RetentionInDays": 731,
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "WebCrawlerMemmoryAlarmE500BB39": {
+      "Properties": {
+        "AlarmDescription": "Alarm for Web Crawler Memmory Used Metric",
+        "AlarmName": "webcrawler-memmory-alarm-prod",
+        "ComparisonOperator": "GreaterThanThreshold",
+        "Dimensions": [
+          {
+            "Name": "function_name",
+            "Value": {
+              "Ref": "WebCrawler0D5FB62D",
+            },
+          },
+        ],
+        "EvaluationPeriods": 1,
+        "MetricName": "used_memory_max",
+        "Namespace": "LambdaInsights",
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 200,
+        "TreatMissingData": "ignore",
+      },
+      "Type": "AWS::CloudWatch::Alarm",
+    },
+    "WebCrawlerRole5028D7E6": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Web Crawler IAM Role-ap-southeast-2-prod",
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/CloudWatchLambdaInsightsExecutionRolePolicy",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "WebCrawlerRoleDefaultPolicy11DBEE8A": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "s3:ListAllMyBuckets",
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": "s3:*",
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": "cloudwatch:PutMetricData",
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:CreateLogGroup",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "WebCrawlerRoleDefaultPolicy11DBEE8A",
+        "Roles": [
+          {
+            "Ref": "WebCrawlerRole5028D7E6",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;

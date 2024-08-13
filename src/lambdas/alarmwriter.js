@@ -6,16 +6,19 @@ const tableName = process.env.TABLE_NAME;
 exports.handler = async (event) => {
     console.log('Received event:', JSON.stringify(event, null, 2));
 
+    // this array is for test purpose
+    const items = []
+
     for (const record of event.Records) {
         const metricData = JSON.parse(record.Sns.Message);
 
         // Skip insertion if the alarm description matches specific criteria
         if (metricData.AlarmDescription === 'Alarm for Max Latency Metric' ||
             metricData.AlarmDescription === 'Alarm for Min Availability Metric') {
-                console.log('Skipping insertion for:', metricData.AlarmDescription);
-            continue;        
-        };
-       
+            console.log('Skipping insertion for:', metricData.AlarmDescription);
+            continue;
+        }
+
         const params = {
             TableName: tableName,
             Item: {
@@ -25,13 +28,20 @@ exports.handler = async (event) => {
                 reason: { S: metricData.NewStateReason },
             },
         };
-        
+
         try {
             const command = new PutItemCommand(params);
             await client.send(command);
             console.log('Data inserted:', params.Item);
+
+            // for test purpose
+            items.push(params.Item);
+            
         } catch (err) {
             console.error('Error inserting data:', err);
         }
     }
+
+    // for test purpose
+    return items
 };

@@ -1,16 +1,13 @@
 // Test DynamoDB / integration
-
 const { mockClient } = require('aws-sdk-client-mock');
 const { DynamoDBClient, PutItemCommand} = require("@aws-sdk/client-dynamodb");
-const handler = require('../src/lambdas/dynamodb').handler;
+const handler = require('../src/lambdas/alarmwriter').handler;
 
+const ddbMock = mockClient(DynamoDBClient);
 
-describe('Lambda Function Integration Tests', () => {
-    const ddbMock = mockClient(DynamoDBClient);
+describe('Alarm Writer Function Integration Tests', () => {
 
     beforeAll(() => {
-        ddbMock.reset();
-        // Set the environment variable
         process.env.TABLE_NAME = 'TestTable';
     });
 
