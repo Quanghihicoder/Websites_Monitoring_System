@@ -3,7 +3,7 @@ const client = new DynamoDBClient();
 
 const tableName = process.env.TABLE_NAME;
 
-// const test = true
+const test = true
 
 exports.handler = async (event) => {
     console.log('Received event:', JSON.stringify(event, null, 2));
