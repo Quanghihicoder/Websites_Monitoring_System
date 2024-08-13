@@ -27,6 +27,5 @@ new PipelineStack(app, 'PipelineStack', {
   stackName: "PipelineStack",
   betaApplicationStacks: [betaApplicationStackVirginia, betaApplicationStackSydney],
   prodApplicationStacks: [prodApplicationStackVirginia, prodApplicationStackSydney],
-  listOfRegions: [Virginia.region,Sydney.region],
   env: Sydney,
 });
