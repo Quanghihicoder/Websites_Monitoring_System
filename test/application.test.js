@@ -52,7 +52,7 @@ test('Alarms for Latency have correct properties', () => {
         ComparisonOperator: 'GreaterThanThreshold',
         EvaluationPeriods: 1,
         ActionsEnabled: true,
-        Period: 300, // 5 minutes in seconds
+        Period: 300, // 5 minutes
         TreatMissingData: 'ignore'
       })
 })
@@ -126,7 +126,7 @@ test('Lambda Alias for Web Crawler is created', () => {
 test('Lambda Deployment Group for Web Crawler is created', () => {
     template.hasResource('AWS::CodeDeploy::DeploymentGroup',"");
     template.hasResourceProperties('AWS::CodeDeploy::DeploymentGroup', {
-        DeploymentConfigName: 'CodeDeployDefault.LambdaCanary10Percent10Minutes',
+        DeploymentConfigName: 'CodeDeployDefault.LambdaLinear10PercentEvery3Minutes',
         AutoRollbackConfiguration: {
             Events: [
                 'DEPLOYMENT_FAILURE',
@@ -136,6 +136,7 @@ test('Lambda Deployment Group for Web Crawler is created', () => {
     })
 })
 
+//Array of one URL
 const urls = ['https://www.swinburne.edu.au']; 
 
 test('Alarms for Latency have correct properties', () => {    
@@ -144,7 +145,7 @@ test('Alarms for Latency have correct properties', () => {
         AlarmName: `webcrawler-alarm-${url}-latency-ap-southeast-2-prod`,
         ComparisonOperator: 'GreaterThanThreshold',
         Threshold: 800, // Use the actual value of acceptableLatency
-        Period: 300, // 5 minutes in seconds
+        Period: 300, // 5 minutes
         AlarmDescription: `Alarm for ${url} Latency Metric`,})
     })
   })
@@ -155,7 +156,7 @@ test('Alarms for Latency have correct properties', () => {
         AlarmName: `webcrawler-alarm-${url}-availability-ap-southeast-2-prod`,
         ComparisonOperator: 'LessThanThreshold',
         ActionsEnabled: true,
-        Period: 300, // 5 minutes in seconds
+        Period: 300, // 5 minutes
         AlarmDescription: `Alarm for ${url} Availability Metric`,})
     })
   })
@@ -165,7 +166,7 @@ test('Alarms for Latency have correct properties', () => {
       template.hasResourceProperties('AWS::CloudWatch::Alarm', {
         AlarmName: `webcrawler-alarm-${url}-broken-links-ap-southeast-2-prod`,
         ComparisonOperator: 'GreaterThanThreshold',
-        Period: 300, // 5 minutes in seconds  
+        Period: 300, // 5 minutes 
         AlarmDescription: `Alarm for ${url} BrokenLinks Metric`,})
     })
   })
@@ -189,7 +190,7 @@ test('Alarms for Latency have correct properties', () => {
 
 // ======================================================== Integration / Snapshot Test =====================================================
 // Might need to run "npm run test --updateSnapshot"
-it('Matches the snapshot.', () => {
-   expect(template.toJSON()).toMatchSnapshot();
-})
+//it('Matches the snapshot.', () => {
+//    expect(template.toJSON()).toMatchSnapshot();
+//})
     

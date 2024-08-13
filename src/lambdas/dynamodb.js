@@ -12,10 +12,10 @@ exports.handler = async (event) => {
         // Skip insertion if the alarm description matches specific criteria
         if (metricData.AlarmDescription === 'Alarm for Max Latency Metric' ||
             metricData.AlarmDescription === 'Alarm for Min Availability Metric') {
-            console.log('Skipping insertion for:', metricData.AlarmDescription);
-            continue;
-        }
-
+                console.log('Skipping insertion for:', metricData.AlarmDescription);
+            continue;        
+        };
+       
         const params = {
             TableName: tableName,
             Item: {
@@ -25,7 +25,7 @@ exports.handler = async (event) => {
                 reason: { S: metricData.NewStateReason },
             },
         };
-
+        
         try {
             const command = new PutItemCommand(params);
             await client.send(command);

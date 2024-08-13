@@ -25,40 +25,35 @@ const template = Template.fromStack(stack);
 
 // ======================================================== Unit/Assertions Test =====================================================
 
-// test('Bucket for webcrawler has been created', () => {
-//     template.hasResourceProperties('AWS::S3::Bucket', {
-//         BucketName: "project3-webcrawler-bucket"
-//     })
-// })
-
 test('S3 Bucket for pipeline has been created', () => {
-  template.hasResourceProperties('AWS::S3::Bucket', {
-      BucketName: 'project3-pipeline-bucket',
-      VersioningConfiguration: {
-          Status: 'Enabled'
-      }
-})
+    template.hasResourceProperties('AWS::S3::Bucket', {
+        BucketName: 'project3-pipeline-bucket',
+        VersioningConfiguration: {
+            Status: 'Enabled'
+        }
+  })
 })
 
-// test('Bucket has correct removal policy', () => {
-//   template.hasResource('AWS::S3::Bucket', {
-//     Properties: {
-//       BucketName: 'project3-webcrawler-bucket'
-//     },
-//     DeletionPolicy: 'Delete' // This checks the `DeletionPolicy` for removal
-//   })
-// })
+test('Bucket has correct removal policy', () => {
+    template.hasResource('AWS::S3::Bucket', {
+      Properties: {
+        BucketName: 'project3-webcrawler-bucket'
+      },
+      DeletionPolicy: 'Delete' // This checks the `DeletionPolicy` for removal
+    })
+  })
 
-// test('SSM Parameter for webcrawler-assets-bucket-location has been created', () => {
-//     template.hasResourceProperties('AWS::SSM::Parameter', {
-//       Name: 'webcrawler-assets-bucket-location',
-//     })
-//   })
+test('SSM Parameter for webcrawler-assets-bucket-location has been created', () => {
+    template.hasResourceProperties('AWS::SSM::Parameter', {
+      Name: 'webcrawler-assets-bucket-location',
+    })
+  })
+
+
+test('S3 Bucket Deployment Configured', () => {
+    template.resourceCountIs('Custom::CDKBucketDeployment', 1);
+})
 
 test('The pipeline has been created', () => {
-    template.hasResource("AWS::CodePipeline::Pipeline", "");
+  template.hasResource("AWS::CodePipeline::Pipeline", "");
 })
-
-// test('S3 Bucket Deployment Configured', () => {
-//     template.resourceCountIs('Custom::CDKBucketDeployment', 1);
-// })
