@@ -9,6 +9,7 @@ const { mockClient } = require('aws-sdk-client-mock');
 const stackName = "TestStack";
 const region = "ap-southeast-2";
 
+//Create instances of AWS SDK clients for interacting with cloudFormation
 const cloudFormationClient = new CloudFormationClient({ region });
 const lambdaClient = new LambdaClient({ region });
 const cloudWatchClient = new CloudWatchClient({ region });
@@ -17,6 +18,7 @@ const snsClient = new SNSClient({ region });
 
 describe("Integration Tests for AWS CDK Stack", () => {
 
+    //Mock clients for the AWS services 
     const cfMock = mockClient(CloudFormationClient);
     const lambdaMock = mockClient(LambdaClient);
     const snsMock = mockClient(SNSClient);
@@ -35,9 +37,9 @@ describe("Integration Tests for AWS CDK Stack", () => {
 
         snsMock.on(ListSubscriptionsByTopicCommand, { TopicArn: topicArn }).resolves({
             Subscriptions: [
-                { SubscriptionArn: "TestTopic" },
-                { SubscriptionArn: "TestTopic" },
-                { SubscriptionArn: "TestTopic" }
+                { SubscriptionArn: "Subscription1" },
+                { SubscriptionArn: "Subscription2" },
+                { SubscriptionArn: "Subscription3" }
         ]
         });
 
@@ -68,7 +70,6 @@ describe("Integration Tests for AWS CDK Stack", () => {
     });
 
     it("SNS topic and subscriptions are set up correctly", async () => {
-        const topicArn = "TestTopic";
         const command = new ListSubscriptionsByTopicCommand({ TopicArn: topicArn });
         const response = await snsClient.send(command);
         expect(response.Subscriptions).toBeDefined();
