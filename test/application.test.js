@@ -37,9 +37,9 @@ test('IAM Role for Web Crawler is created', () => {
     })
 })
 
-test('Web Crawler runs every 5 minutes', () => {
+test('Web Crawler runs every 2 minutes', () => {
     template.hasResourceProperties('AWS::Events::Rule', {
-        ScheduleExpression: "rate(5 minutes)"
+        ScheduleExpression: "rate(2 minutes)"
     })
 })
 
@@ -48,7 +48,7 @@ test('Alarms for Latency have correct properties', () => {
         ComparisonOperator: 'GreaterThanThreshold',
         EvaluationPeriods: 1,
         ActionsEnabled: true,
-        Period: 300, // 5 minutes
+        Period: 120, // 2 minutes
         TreatMissingData: 'ignore'
       })
 })
