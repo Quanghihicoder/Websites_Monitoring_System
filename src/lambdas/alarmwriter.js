@@ -3,8 +3,13 @@ const client = new DynamoDBClient();
 
 const tableName = process.env.TABLE_NAME;
 
+// const test = true
+
 exports.handler = async (event) => {
     console.log('Received event:', JSON.stringify(event, null, 2));
+
+    // this array is for test purpose
+    const items = []
 
     for (const record of event.Records) {
         const metricData = JSON.parse(record.Sns.Message);
@@ -20,7 +25,7 @@ exports.handler = async (event) => {
             TableName: tableName,
             Item: {
                 url: { S: metricData.Trigger.Dimensions[0].value },
-                timestamp: { S: new Date().toISOString() },
+                timestamp: { S: new Date().toDateString() },
                 alarmDescription: { S: metricData.AlarmDescription },
                 reason: { S: metricData.NewStateReason },
             },
@@ -30,8 +35,15 @@ exports.handler = async (event) => {
             const command = new PutItemCommand(params);
             await client.send(command);
             console.log('Data inserted:', params.Item);
+
+            // for test purpose
+            items.push(params.Item);
+            
         } catch (err) {
             console.error('Error inserting data:', err);
         }
     }
+
+    // for test purpose
+    return items
 };

@@ -16,12 +16,16 @@ const Sydney = {
 
 const app = new cdk.App();
 
-const betaApplicationStack = new ApplicationStack(app, 'BetaApplicationStack', { env: Sydney, stackName: "BetaApplicationStack", stage: 'beta' });
-const prodApplicationStack = new ApplicationStack(app, 'ProdApplicationStack', { env: Sydney, stackName: "ProdApplicationStack", stage: 'prod' });
+// Create application stacks for both regions
+// const betaApplicationStackVirginia = new ApplicationStack(app, 'BetaApplicationStackVirginia', { env: Virginia, stackName: "BetaApplicationStackVirginia", stage: 'beta' });
+// const prodApplicationStackVirginia = new ApplicationStack(app, 'ProdApplicationStackVirginia', { env: Virginia, stackName: "ProdApplicationStackVirginia", stage: 'prod' });
+
+const betaApplicationStackSydney = new ApplicationStack(app, 'BetaApplicationStackSydney', { env: Sydney, stackName: "BetaApplicationStackSydney", stage: 'beta' });
+const prodApplicationStackSydney = new ApplicationStack(app, 'ProdApplicationStackSydney', { env: Sydney, stackName: "ProdApplicationStackSydney", stage: 'prod' });
 
 new PipelineStack(app, 'PipelineStack', {
   stackName: "PipelineStack",
-  betaApplicationStack: betaApplicationStack,
-  prodApplicationStack: prodApplicationStack,
+  betaApplicationStacks: [betaApplicationStackSydney],
+  prodApplicationStacks: [prodApplicationStackSydney],
   env: Sydney,
 });

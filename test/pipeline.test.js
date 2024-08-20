@@ -1,9 +1,13 @@
-// Test AWS infrastructure
-
+// Test Cloud Formation
 const cdk = require('aws-cdk-lib');
 const { Template } = require('aws-cdk-lib/assertions');
 const { ApplicationStack } = require("../lib/application-stack");
 const { PipelineStack } = require("../lib/pipeline-stack");
+
+const Virginia = {
+  account: "058264550947",
+  region: "us-east-1",
+};
 
 const Sydney = {
   account: "058264550947",
@@ -12,13 +16,17 @@ const Sydney = {
 
 const app = new cdk.App();
 
-const betaApplicationStack = new ApplicationStack(app, 'BetaApplicationStack', { env: Sydney, stackName: "BetaApplicationStack", stage: 'beta' });
-const prodApplicationStack = new ApplicationStack(app, 'ProdApplicationStack', { env: Sydney, stackName: "ProdApplicationStack", stage: 'prod' });
+// Create application stacks for both regions
+const betaApplicationStackVirginia = new ApplicationStack(app, 'BetaApplicationStackVirginia', { env: Virginia, stackName: "BetaApplicationStackVirginia", stage: 'beta' });
+const prodApplicationStackVirginia = new ApplicationStack(app, 'ProdApplicationStackVirginia', { env: Virginia, stackName: "ProdApplicationStackVirginia", stage: 'prod' });
 
-const stack =  new PipelineStack(app, 'PipelineStack', {
+const betaApplicationStackSydney = new ApplicationStack(app, 'BetaApplicationStackSydney', { env: Sydney, stackName: "BetaApplicationStackSydney", stage: 'beta' });
+const prodApplicationStackSydney = new ApplicationStack(app, 'ProdApplicationStackSydney', { env: Sydney, stackName: "ProdApplicationStackSydney", stage: 'prod' });
+
+const stack = new PipelineStack(app, 'PipelineStack', {
   stackName: "PipelineStack",
-  betaApplicationStack: betaApplicationStack,
-  prodApplicationStack: prodApplicationStack,
+  betaApplicationStacks: [betaApplicationStackVirginia, betaApplicationStackSydney],
+  prodApplicationStacks: [prodApplicationStackVirginia, prodApplicationStackSydney],
   env: Sydney,
 });
 
@@ -26,13 +34,15 @@ const template = Template.fromStack(stack);
 
 // ======================================================== Unit/Assertions Test =====================================================
 
-test('Bucket for webcrawler has been created', () => {
+test('S3 Bucket for pipeline has been created', () => {
     template.hasResourceProperties('AWS::S3::Bucket', {
-        BucketName: "project3-webcrawler-bucket"
-    })
+        BucketName: 'webcrawler-pipeline-bucket',
+        VersioningConfiguration: {
+            Status: 'Enabled'
+        }
+  })
 })
 
-
 test('The pipeline has been created', () => {
-    template.hasResource("AWS::CodePipeline::Pipeline", "");
+  template.hasResource("AWS::CodePipeline::Pipeline", "");
 })
