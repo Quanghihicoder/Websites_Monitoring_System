@@ -1,17 +1,7 @@
 curl -X GET https://your-api-id.execute-api.your-region.amazonaws.com/prod/websites
 
-curl -X POST https://your-api-id.execute-api.your-region.amazonaws.com/prod/websites \
-  -H "Content-Type: application/json" \
-  -d '{
-        "url": "https://example.com"
-      }'
+curl -X POST https://your-api-id.execute-api.your-region.amazonaws.com/prod/websites -H "Content-Type: application/json" -d "{'url': 'https://example.com'}"
 
-
-curl -X PUT https://your-api-id.execute-api.your-region.amazonaws.com/prod/websites/{id} \
-  -H "Content-Type: application/json" \
-  -d '{
-        "url": "https://updated-example.com"
-      }'
-
+curl -X PUT https://your-api-id.execute-api.your-region.amazonaws.com/prod/websites/{id} -H "Content-Type: application/json" -d "{'url': 'https://updated-example.com'}"
 
 curl -X DELETE https://your-api-id.execute-api.your-region.amazonaws.com/prod/websites/{id}
