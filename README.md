@@ -12,6 +12,9 @@
 
 5) Run the following commands.
 
+6) To test the API Gateway and DynamoDB, go to AWS websites and find the APIs URL. Copy it. Open apis/index.txt, replace the URL, remmember it is ending with /websites. Then run the command from terminal or Postman. With PUT & DELETE add the id in the URL as mentioned in apis/index.txt
+
+
 ## Commands
 * `npm install`                install libraries
 * `npm run test -- -u`         perform all tests
