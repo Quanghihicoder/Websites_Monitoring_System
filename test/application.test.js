@@ -129,58 +129,6 @@ test('Lambda Deployment Group for Web Crawler is created', () => {
     })
 })
 
-//Array of one URL
-// const urls = ['https://www.swinburne.edu.au']; 
-
-// test('Alarms for Latency have correct properties', () => {    
-//     urls.forEach((url, i) => {
-//       template.hasResourceProperties('AWS::CloudWatch::Alarm', {
-//         AlarmName: `webcrawler-alarm-${url}-latency-ap-southeast-2-prod`,
-//         ComparisonOperator: 'GreaterThanThreshold',
-//         Threshold: 800, // Use the actual value of acceptableLatency
-//         Period: 300, // 5 minutes
-//         AlarmDescription: `Alarm for ${url} Latency Metric`,})
-//     })
-//   })
-
-//   test('Alarms for Availability have correct properties', () => {   
-//     urls.forEach((url, i) => {
-//       template.hasResourceProperties('AWS::CloudWatch::Alarm', {
-//         AlarmName: `webcrawler-alarm-${url}-availability-ap-southeast-2-prod`,
-//         ComparisonOperator: 'LessThanThreshold',
-//         ActionsEnabled: true,
-//         Period: 300, // 5 minutes
-//         AlarmDescription: `Alarm for ${url} Availability Metric`,})
-//     })
-//   })
-
-//   test('Alarms for Broken Links have correct properties', () => {
-//       urls.forEach((url, i) => {
-//       template.hasResourceProperties('AWS::CloudWatch::Alarm', {
-//         AlarmName: `webcrawler-alarm-${url}-broken-links-ap-southeast-2-prod`,
-//         ComparisonOperator: 'GreaterThanThreshold',
-//         Period: 300, // 5 minutes 
-//         AlarmDescription: `Alarm for ${url} BrokenLinks Metric`,})
-//     })
-//   })
-
-//   test('Alarm for Max Latency has correct properties', () => {
-//     template.hasResourceProperties('AWS::CloudWatch::Alarm', {
-//       AlarmName: 'webcrawler-alarm-max-latency-ap-southeast-2-prod',
-//       ComparisonOperator: 'GreaterThanThreshold',
-//       Threshold: 800, // Use the actual value of acceptableLatency
-//       AlarmDescription: 'Alarm for Max Latency Metric'
-//     })
-//   })
-
-//   test('Alarm for Min Availability has correct properties', () => {
-//     template.hasResourceProperties('AWS::CloudWatch::Alarm', {
-//       AlarmName: 'webcrawler-alarm-min-reachable-ap-southeast-2-prod',
-//       ComparisonOperator: 'LessThanThreshold',
-//       AlarmDescription: 'Alarm for Min Availability Metric'
-//     })
-//   })
-
 // ======================================================== Integration / Snapshot Test =====================================================
 // Might need to run "npm run test --updateSnapshot"
 it('Matches the snapshot.', () => {
