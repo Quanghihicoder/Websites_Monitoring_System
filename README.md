@@ -8,11 +8,11 @@ Before you begin, ensure you have met the following requirements:
 3. AWS CLI: Installed and configured with access keys.
 
 # Development
-The project is developed using AWS CDK and JavaScript programming language. 
-Node.js version: v20.13.1 
-npm version: 10.5.2 
-AWS CLI version: aws-cli/2.17.32 Python/3.11.9 Windows/10 exe/AMD64 
-CDK version: 2.152.0
+The project is developed using AWS CDK and JavaScript programming language:
+1. Node.js version: v20.13.1 
+2. npm version: 10.5.2 
+3. AWS CLI version: aws-cli/2.17.32 Python/3.11.9 Windows/10 exe/AMD64 
+4. CDK version: 2.152.0
 
 # How to install and run the project
 The source code of the project can be found here: 
@@ -38,6 +38,7 @@ Quanghihicoder/Websites_Monitoring_System (github.com)
 
 # Future Enhancement
 ![alt text](https://github.com/Quanghihicoder/Websites_Monitoring_System/blob/master/images/Enhancement.png)
+
 Although the project already includes the necessary code for integrating DynamoDB and API Gateway as replacements for S3, we decided not to apply these in our final solution. This decision was based on various factors, including the evaluation of the benefits versus the complexity of making such a transition.
 
 However, in the future, using the API endpoints from DynamoDB and API Gateway into the web crawler function could offer significant advantages. It would enable users to modify the JSON list of websites without needing to access GitHub or change the codebase. Users could easily update the list of target websites, making it more user-friendly and efficient, thereby reducing dependency on developers. 
