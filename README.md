@@ -15,8 +15,6 @@ The project is developed using AWS CDK and JavaScript programming language:
 4. CDK version: 2.152.0
 
 # How to install and run the project
-The source code of the project can be found here: 
-Quanghihicoder/Websites_Monitoring_System (github.com) 
 1. Clone the project  
 2. Change the AWS account number in bin/project3.js in line 8 and 13. 
 3. Create access keys for IAM account. Run the "aws configure" command to add the credentials. 
