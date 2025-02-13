@@ -6,7 +6,7 @@ const s3 = new S3Client({});
 const cloudWatch = new CloudWatchClient({});
 
 // Test pipeline
-// const test = true
+const test = true
 
 // maximum number of links that would be followed
 const limit = 10;
